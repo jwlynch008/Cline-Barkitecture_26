@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barkitecture — Module Concept Sketches</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1612;
+    --paper: #f4f0e8;
+    --tone: #c8bfa8;
+    --light: #e8e2d4;
+    --red: #8b3a2a;
+    --blue: #2a4a6b;
+    --fade: rgba(26,22,18,0.12);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 40px;
+    min-height: 100vh;
+  }
+
+  header {
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 16px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  header h1 {
+    font-family: 'IM Fell English', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  header .meta {
+    text-align: right;
+    opacity: 0.55;
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .sketch-card {
+    border: 1px solid var(--ink);
+    background: #faf7f0;
+    position: relative;
+  }
+
+  .sketch-card.composite {
+    grid-column: 1 / -1;
+    border-width: 2px;
+  }
+
+  .card-label {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+  }
+
+  .card-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 14px;
+    border-top: 1px solid var(--tone);
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    font-style: italic;
+    background: rgba(244,240,232,0.92);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-title span {
+    font-family: 'Space Mono', monospace;
+    font-style: normal;
+    font-size: 9px;
+    opacity: 0.5;
+    letter-spacing: 0.08em;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Barkitecture — Cast Concrete Module</h1>
+    <div style="font-size:10px; opacity:0.4; margin-top:3px; font-style:italic; font-family:'IM Fell English',serif;">Concept Sketch Studies 01–04 &nbsp;/&nbsp; Territory Convergence Series</div>
+  </div>
+  <div class="meta">
+    JWL / Cline Design Associates<br>
+    AIA Triangle — Barkitecture Pavilion<br>
+    6–12″ Cast Concrete Module · Brick Scale
+  </div>
+</header>
+
+<div class="grid">
+
+  <!-- SKETCH 1: MOTION / WAG TRACE -->
+  <div class="sketch-card">
+    <div class="card-label">01 — Territory I</div>
+    <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="roughen1">
+          <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" seed="2" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.7" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <!-- Sketch paper texture -->
+        <filter id="paper">
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noiseOut"/>
+          <feColorMatrix type="saturate" values="0" in="noiseOut" result="grayNoise"/>
+          <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
+          <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+        </filter>
+      </defs>
+
+      <!-- paper bg -->
+      <rect width="480" height="380" fill="#faf7f0"/>
+      <rect width="480" height="380" fill="url(#paper)" opacity="0.3"/>
+
+      <!-- grid lines faint -->
+      <g opacity="0.07" stroke="#1a1612" stroke-width="0.5">
+        <line x1="0" y1="60" x2="480" y2="60"/>
+        <line x1="0" y1="120" x2="480" y2="120"/>
+        <line x1="0" y1="180" x2="480" y2="180"/>
+        <line x1="0" y1="240" x2="480" y2="240"/>
+        <line x1="0" y1="300" x2="480" y2="300"/>
+        <line x1="60" y1="0" x2="60" y2="380"/>
+        <line x1="120" y1="0" x2="120" y2="380"/>
+        <line x1="180" y1="0" x2="180" y2="380"/>
+        <line x1="240" y1="0" x2="240" y2="380"/>
+        <line x1="300" y1="0" x2="300" y2="380"/>
+        <line x1="360" y1="0" x2="360" y2="380"/>
+        <line x1="420" y1="0" x2="420" y2="380"/>
+      </g>
+
+      <!-- SECTION LABEL -->
+      <text x="30" y="38" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="2">SECTION</text>
+      <line x1="30" y1="42" x2="220" y2="42" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- Module section box - ground line -->
+      <line x1="30" y1="130" x2="220" y2="130" stroke="#1a1612" stroke-width="1" opacity="0.25"/>
+
+      <!-- ASYMMETRIC WAG PROFILE — module section silhouette -->
+      <!-- The profile is an asymmetric sine: right excursion > left -->
+      <!-- Module left wall -->
+      <line x1="50" y1="55" x2="50" y2="130" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen1)"/>
+      <!-- Module right wall -->
+      <line x1="200" y1="55" x2="200" y2="130" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen1)"/>
+      <!-- Module base -->
+      <line x1="50" y1="130" x2="200" y2="130" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen1)"/>
+
+      <!-- Asymmetric sine profile top (the module face profile) -->
+      <!-- Positive (right-dominant) wag: bigger swing right -->
+      <path d="M 50 90
+               C 65 55, 90 52, 110 80
+               C 120 95, 130 105, 145 95
+               C 158 85, 168 68, 185 75
+               C 192 78, 196 82, 200 85"
+            fill="none" stroke="#1a1612" stroke-width="2" filter="url(#roughen1)"/>
+
+      <!-- Hatching inside section -->
+      <g opacity="0.15" stroke="#1a1612" stroke-width="0.7">
+        <line x1="55" y1="95" x2="75" y2="130"/>
+        <line x1="70" y1="80" x2="95" y2="130"/>
+        <line x1="85" y1="70" x2="115" y2="130"/>
+        <line x1="100" y1="75" x2="135" y2="130"/>
+        <line x1="115" y1="85" x2="155" y2="130"/>
+        <line x1="130" y1="90" x2="175" y2="130"/>
+        <line x1="145" y1="88" x2="195" y2="130"/>
+        <line x1="160" y1="80" x2="200" y2="118"/>
+        <line x1="175" y1="72" x2="200" y2="99"/>
+      </g>
+
+      <!-- Annotation: amplitude ratio -->
+      <line x1="50" y1="80" x2="38" y2="80" stroke="#8b3a2a" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <line x1="50" y1="90" x2="38" y2="90" stroke="#8b3a2a" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <line x1="41" y1="80" x2="41" y2="90" stroke="#8b3a2a" stroke-width="1"/>
+      <text x="25" y="87" font-family="Space Mono" font-size="7" fill="#8b3a2a" transform="rotate(-90,25,87)">A_L</text>
+
+      <line x1="50" y1="55" x2="38" y2="55" stroke="#8b3a2a" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <line x1="41" y1="55" x2="41" y2="80" stroke="#8b3a2a" stroke-width="1"/>
+      <text x="25" y="70" font-family="Space Mono" font-size="7" fill="#8b3a2a" transform="rotate(-90,25,70)">A_R ×1.4</text>
+
+      <!-- PLAN VIEW LABEL -->
+      <text x="240" y="38" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="2">PLAN ARRAY / PHASE SHIFT</text>
+      <line x1="240" y1="42" x2="460" y2="42" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- Array of 5 modules in plan, each phase-shifted -->
+      <!-- Module outline boxes in plan -->
+      <g fill="none" stroke="#1a1612" stroke-width="1" filter="url(#roughen1)" opacity="0.6">
+        <rect x="250" y="50" width="18" height="80"/>
+        <rect x="272" y="50" width="18" height="80"/>
+        <rect x="294" y="50" width="18" height="80"/>
+        <rect x="316" y="50" width="18" height="80"/>
+        <rect x="338" y="50" width="18" height="80"/>
+        <rect x="360" y="50" width="18" height="80"/>
+        <rect x="382" y="50" width="18" height="80"/>
+        <rect x="404" y="50" width="18" height="80"/>
+        <rect x="426" y="50" width="18" height="80"/>
+      </g>
+
+      <!-- Wavy leading edge through all modules — murmuration wave -->
+      <path d="M 250 90
+               C 258 60, 268 62, 272 75
+               C 276 88, 282 98, 290 90
+               C 298 80, 302 62, 312 68
+               C 320 74, 322 88, 332 92
+               C 340 96, 348 70, 356 72
+               C 364 74, 366 92, 378 94
+               C 386 96, 392 72, 400 70
+               C 408 68, 410 88, 422 90
+               C 432 92, 438 76, 444 78"
+            fill="none" stroke="#1a1612" stroke-width="2.5" filter="url(#roughen1)"/>
+
+      <!-- Phase annotations -->
+      <text x="257" y="140" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.4">φ+0</text>
+      <text x="279" y="140" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.4">φ+1</text>
+      <text x="301" y="140" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.4">φ+2</text>
+      <text x="323" y="140" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.4">φ+3</text>
+
+      <!-- ELEVATION: Marey-style motion trace overlaid on module face -->
+      <text x="30" y="168" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="2">ELEVATION — CHRONOPHOTOGRAPHIC TRACE</text>
+      <line x1="30" y1="172" x2="450" y2="172" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- Single module face rectangle -->
+      <rect x="60" y="182" width="100" height="150" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen1)"/>
+
+      <!-- Overlapping motion traces — wag stroboscopic -->
+      <g opacity="0.18" stroke="#1a1612" stroke-width="0.8" fill="none">
+        <path d="M 60 182 Q 80 220 110 260 Q 130 285 160 310 L 160 332 L 60 332"/>
+        <path d="M 60 182 Q 78 218 108 258 Q 128 282 158 307 L 158 332"/>
+        <path d="M 60 182 Q 75 215 105 255 Q 126 279 156 305 L 156 332"/>
+        <path d="M 60 182 Q 73 213 102 252 Q 124 277 154 303 L 154 332"/>
+        <path d="M 60 182 Q 70 210 100 250 Q 122 275 152 301 L 152 332"/>
+        <path d="M 60 182 Q 85 222 112 262 Q 132 287 162 312 L 162 332"/>
+        <path d="M 60 182 Q 88 225 115 265 Q 135 290 164 315 L 164 332"/>
+        <path d="M 60 182 Q 92 228 118 268 Q 138 293 166 318 L 166 332"/>
+      </g>
+      <!-- Stronger central trace -->
+      <path d="M 60 182 Q 82 222 112 262 Q 132 288 160 315 L 160 332"
+            fill="none" stroke="#1a1612" stroke-width="1.8" filter="url(#roughen1)"/>
+
+      <!-- Tail tip dots -->
+      <circle cx="80" cy="210" r="1.5" fill="#1a1612" opacity="0.3"/>
+      <circle cx="90" cy="225" r="1.5" fill="#1a1612" opacity="0.25"/>
+      <circle cx="100" cy="238" r="1.5" fill="#1a1612" opacity="0.2"/>
+
+      <!-- Note -->
+      <text x="175" y="200" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.55">frozen motion</text>
+      <text x="175" y="213" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.55">stroboscopic</text>
+      <text x="175" y="226" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.55">trace of wag</text>
+      <line x1="172" y1="216" x2="162" y2="250" stroke="#1a1612" stroke-width="0.6" opacity="0.4"/>
+
+      <!-- annotation arrow -->
+      <text x="185" y="270" font-family="Space Mono" font-size="7" fill="#8b3a2a" opacity="0.7">A_R / A_L ≈ 1.4</text>
+      <text x="185" y="282" font-family="Space Mono" font-size="7" fill="#8b3a2a" opacity="0.7">1–5 Hz oscillation</text>
+      <text x="185" y="294" font-family="Space Mono" font-size="7" fill="#8b3a2a" opacity="0.7">approach = right bias</text>
+
+      <!-- dimension tick -->
+      <line x1="60" y1="340" x2="160" y2="340" stroke="#1a1612" stroke-width="0.8"/>
+      <line x1="60" y1="336" x2="60" y2="344" stroke="#1a1612" stroke-width="0.8"/>
+      <line x1="160" y1="336" x2="160" y2="344" stroke="#1a1612" stroke-width="0.8"/>
+      <text x="92" y="352" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.6">6–8 in.</text>
+
+    </svg>
+    <div class="card-title">
+      Motion Encoding — Wag Trace &amp; Array Oscillation
+      <span>TERRITORY I / TAIL WAG + HERDING</span>
+    </div>
+  </div>
+
+  <!-- SKETCH 2: DAPPLED LIGHT / APERTURE -->
+  <div class="sketch-card">
+    <div class="card-label">02 — Territory II</div>
+    <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="roughen2">
+          <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" seed="5" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.8" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+
+      <rect width="480" height="380" fill="#faf7f0"/>
+
+      <!-- grid -->
+      <g opacity="0.07" stroke="#1a1612" stroke-width="0.5">
+        <line x1="0" y1="60" x2="480" y2="60"/>
+        <line x1="0" y1="120" x2="480" y2="120"/>
+        <line x1="0" y1="180" x2="480" y2="180"/>
+        <line x1="0" y1="240" x2="480" y2="240"/>
+        <line x1="0" y1="300" x2="480" y2="300"/>
+        <line x1="60" y1="0" x2="60" y2="380"/>
+        <line x1="120" y1="0" x2="120" y2="380"/>
+        <line x1="180" y1="0" x2="180" y2="380"/>
+        <line x1="240" y1="0" x2="240" y2="380"/>
+        <line x1="300" y1="0" x2="300" y2="380"/>
+        <line x1="360" y1="0" x2="360" y2="380"/>
+        <line x1="420" y1="0" x2="420" y2="380"/>
+      </g>
+
+      <!-- LABEL ROW -->
+      <text x="30" y="38" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="2">SECTION — APERTURE DEPTH STUDY</text>
+      <line x1="30" y1="42" x2="450" y2="42" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- THREE APERTURE VARIANTS SIDE BY SIDE -->
+      <!-- A: Wide/Shallow -->
+      <rect x="32" y="52" width="40" height="90" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen2)"/>
+      <!-- Aperture hole wide -->
+      <rect x="43" y="52" width="18" height="90" fill="#e8e2d0"/>
+      <rect x="43" y="52" width="18" height="90" fill="none" stroke="#1a1612" stroke-width="0.8"/>
+      <!-- hatching on solid sides -->
+      <g stroke="#1a1612" stroke-width="0.6" opacity="0.2">
+        <line x1="33" y1="55" x2="43" y2="65"/><line x1="33" y1="65" x2="43" y2="75"/>
+        <line x1="33" y1="75" x2="43" y2="85"/><line x1="33" y1="85" x2="43" y2="95"/>
+        <line x1="33" y1="95" x2="43" y2="105"/><line x1="33" y1="105" x2="43" y2="115"/>
+        <line x1="33" y1="115" x2="43" y2="125"/><line x1="33" y1="125" x2="43" y2="135"/>
+        <line x1="61" y1="55" x2="71" y2="65"/><line x1="61" y1="65" x2="71" y2="75"/>
+        <line x1="61" y1="75" x2="71" y2="85"/><line x1="61" y1="85" x2="71" y2="95"/>
+        <line x1="61" y1="95" x2="71" y2="105"/><line x1="61" y1="105" x2="71" y2="115"/>
+        <line x1="61" y1="115" x2="71" y2="125"/><line x1="61" y1="125" x2="71" y2="135"/>
+      </g>
+      <!-- light cones - wide, diffuse -->
+      <path d="M 43 52 L 25 160 M 61 52 L 75 160" stroke="#c8a84b" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
+      <path d="M 43 52 L 20 160 M 61 52 L 82 160" stroke="#c8a84b" stroke-width="0.5" stroke-dasharray="3,2" opacity="0.35"/>
+      <ellipse cx="52" cy="162" rx="28" ry="5" fill="#c8a84b" opacity="0.18"/>
+      <text x="35" y="175" font-family="Space Mono" font-size="7" fill="#c8a84b" opacity="0.8">DIFFUSE</text>
+      <text x="37" y="184" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.45">1:1 ratio</text>
+      <text x="37" y="148" font-family="Space Mono" font-size="7" fill="#2a4a6b" opacity="0.5">θ=45°</text>
+
+      <!-- B: Medium -->
+      <rect x="108" y="52" width="40" height="90" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen2)"/>
+      <rect x="121" y="52" width="14" height="90" fill="#e8e2d0"/>
+      <rect x="121" y="52" width="14" height="90" fill="none" stroke="#1a1612" stroke-width="0.8"/>
+      <g stroke="#1a1612" stroke-width="0.6" opacity="0.2">
+        <line x1="109" y1="55" x2="121" y2="67"/><line x1="109" y1="67" x2="121" y2="79"/>
+        <line x1="109" y1="79" x2="121" y2="91"/><line x1="109" y1="91" x2="121" y2="103"/>
+        <line x1="109" y1="103" x2="121" y2="115"/><line x1="109" y1="115" x2="121" y2="127"/>
+        <line x1="135" y1="55" x2="147" y2="67"/><line x1="135" y1="67" x2="147" y2="79"/>
+        <line x1="135" y1="79" x2="147" y2="91"/><line x1="135" y1="91" x2="147" y2="103"/>
+        <line x1="135" y1="103" x2="147" y2="115"/><line x1="135" y1="115" x2="147" y2="127"/>
+      </g>
+      <path d="M 121 52 L 108 160 M 135 52 L 148 160" stroke="#c8a84b" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+      <ellipse cx="128" cy="162" rx="18" ry="4" fill="#c8a84b" opacity="0.25"/>
+      <text x="108" y="175" font-family="Space Mono" font-size="7" fill="#c8a84b" opacity="0.8">SWEEPING</text>
+      <text x="111" y="184" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.45">1:4 ratio</text>
+      <text x="113" y="148" font-family="Space Mono" font-size="7" fill="#2a4a6b" opacity="0.5">θ=18°</text>
+
+      <!-- C: Narrow/Deep — pinpoint -->
+      <rect x="184" y="52" width="40" height="90" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen2)"/>
+      <rect x="198" y="52" width="8" height="90" fill="#e8e2d0"/>
+      <rect x="198" y="52" width="8" height="90" fill="none" stroke="#1a1612" stroke-width="0.8"/>
+      <g stroke="#1a1612" stroke-width="0.6" opacity="0.2">
+        <line x1="185" y1="55" x2="198" y2="68"/><line x1="185" y1="70" x2="198" y2="83"/>
+        <line x1="185" y1="85" x2="198" y2="98"/><line x1="185" y1="100" x2="198" y2="113"/>
+        <line x1="185" y1="115" x2="198" y2="128"/><line x1="206" y1="55" x2="223" y2="68"/>
+        <line x1="206" y1="70" x2="223" y2="83"/><line x1="206" y1="85" x2="223" y2="98"/>
+        <line x1="206" y1="100" x2="223" y2="113"/><line x1="206" y1="115" x2="223" y2="128"/>
+      </g>
+      <path d="M 198 52 L 194 160 M 206 52 L 210 160" stroke="#c8a84b" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.8"/>
+      <ellipse cx="202" cy="162" rx="7" ry="3" fill="#c8a84b" opacity="0.45"/>
+      <text x="183" y="175" font-family="Space Mono" font-size="7" fill="#c8a84b" opacity="0.9">PINPOINT</text>
+      <text x="186" y="184" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.45">1:6 ratio</text>
+      <text x="188" y="148" font-family="Space Mono" font-size="7" fill="#2a4a6b" opacity="0.5">θ=9.5°</text>
+
+      <!-- WEDGE SECTION (kuma luccon principle) -->
+      <text x="30" y="205" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="2">WEDGE APERTURE — LIGHT AMPLIFICATION ×1.8</text>
+      <line x1="30" y1="209" x2="450" y2="209" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <rect x="32" y="218" width="50" height="70" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen2)"/>
+      <!-- wedge aperture: narrow ext, wide int -->
+      <path d="M 46 218 L 40 288 L 54 288 L 60 218 Z" fill="#e8e2d0" stroke="#1a1612" stroke-width="0.8"/>
+      <g stroke="#1a1612" stroke-width="0.6" opacity="0.2">
+        <line x1="33" y1="222" x2="46" y2="232"/><line x1="33" y1="235" x2="46" y2="245"/>
+        <line x1="33" y1="248" x2="46" y2="258"/><line x1="33" y1="261" x2="46" y2="271"/>
+        <line x1="33" y1="274" x2="46" y2="284"/>
+        <line x1="60" y1="222" x2="81" y2="232"/><line x1="60" y1="235" x2="81" y2="245"/>
+        <line x1="60" y1="248" x2="81" y2="258"/><line x1="60" y1="261" x2="81" y2="271"/>
+        <line x1="60" y1="274" x2="81" y2="284"/>
+      </g>
+      <!-- sun rays in from top -->
+      <line x1="49" y1="210" x2="46" y2="218" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
+      <line x1="53" y1="210" x2="53" y2="218" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
+      <line x1="57" y1="210" x2="60" y2="218" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
+      <!-- spread inside -->
+      <line x1="46" y1="218" x2="40" y2="288" stroke="#c8a84b" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+      <line x1="60" y1="218" x2="54" y2="288" stroke="#c8a84b" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+      <text x="92" y="245" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.6">narrow entry</text>
+      <text x="92" y="260" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.6">→ wide exit</text>
+      <text x="92" y="278" font-family="Space Mono" font-size="8" fill="#2a4a6b" opacity="0.7">amplified ×1.8</text>
+
+      <!-- MODULE FACE — aperture distribution -->
+      <text x="240" y="38" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="2">MODULE FACE — KOMOREBI DISTRIBUTION</text>
+      <line x1="240" y1="42" x2="460" y2="42" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- module face rectangle -->
+      <rect x="260" y="52" width="180" height="200" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen2)"/>
+
+      <!-- Apertures — clustered, organic, phyllotactic spiral distribution -->
+      <!-- Not a grid — Voronoi-adjacent scatter, denser bottom-left -->
+      <g fill="#e8e2d0" stroke="#1a1612" stroke-width="0.8">
+        <!-- cluster 1 - lower left dense -->
+        <circle cx="282" cy="218" r="5"/><circle cx="294" cy="228" r="4"/>
+        <circle cx="275" cy="234" r="3.5"/><circle cx="288" cy="242" r="6"/>
+        <circle cx="302" cy="238" r="4.5"/><circle cx="270" cy="248" r="3"/>
+        <circle cx="296" cy="250" r="3"/><circle cx="308" cy="246" r="5"/>
+        <circle cx="278" cy="256" r="4"/><circle cx="292" cy="260" r="3.5"/>
+        <circle cx="304" cy="258" r="4.5"/><circle cx="316" cy="252" r="3"/>
+        <!-- cluster 2 - upper right medium -->
+        <circle cx="370" cy="88" r="5"/><circle cx="384" cy="96" r="3.5"/>
+        <circle cx="362" cy="100" r="4"/><circle cx="378" cy="108" r="5.5"/>
+        <circle cx="392" cy="104" r="3"/><circle cx="368" cy="114" r="4"/>
+        <circle cx="382" cy="118" r="3.5"/>
+        <!-- scattered singles -->
+        <circle cx="330" cy="130" r="3"/><circle cx="348" cy="156" r="4"/>
+        <circle cx="318" cy="170" r="3.5"/><circle cx="406" cy="148" r="3"/>
+        <circle cx="392" cy="166" r="4.5"/><circle cx="420" cy="120" r="3"/>
+        <circle cx="412" cy="180" r="3.5"/><circle cx="336" cy="100" r="2.5"/>
+        <circle cx="356" cy="76" r="3"/><circle cx="308" cy="78" r="4"/>
+        <circle cx="286" cy="82" r="3.5"/><circle cx="272" cy="94" r="3"/>
+        <circle cx="268" cy="200" r="4"/><circle cx="284" cy="200" r="3"/>
+        <circle cx="322" cy="210" r="3.5"/>
+      </g>
+
+      <!-- light patches on ground (projected below) -->
+      <g opacity="0.12" fill="#c8a84b">
+        <ellipse cx="282" cy="278" rx="7" ry="3.5"/>
+        <ellipse cx="294" cy="272" rx="5" ry="2.5"/>
+        <ellipse cx="308" cy="280" rx="8" ry="4"/>
+        <ellipse cx="276" cy="284" rx="4" ry="2"/>
+        <ellipse cx="296" cy="286" rx="4" ry="2"/>
+      </g>
+
+      <text x="262" y="270" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">apertures not gridded—</text>
+      <text x="262" y="282" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">phyllotactic 144° divergence</text>
+
+    </svg>
+    <div class="card-title">
+      Aperture Depth &amp; Komorebi Distribution
+      <span>TERRITORY II / DAPPLED LIGHT</span>
+    </div>
+  </div>
+
+  <!-- SKETCH 3: REACTION-DIFFUSION / FUR PATTERN -->
+  <div class="sketch-card">
+    <div class="card-label">03 — Territory III</div>
+    <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="roughen3">
+          <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" seed="8" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.8" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+
+      <rect width="480" height="380" fill="#faf7f0"/>
+
+      <g opacity="0.07" stroke="#1a1612" stroke-width="0.5">
+        <line x1="0" y1="60" x2="480" y2="60"/>
+        <line x1="0" y1="120" x2="480" y2="120"/>
+        <line x1="0" y1="180" x2="480" y2="180"/>
+        <line x1="0" y1="240" x2="480" y2="240"/>
+        <line x1="0" y1="300" x2="480" y2="300"/>
+        <line x1="60" y1="0" x2="60" y2="380"/>
+        <line x1="120" y1="0" x2="120" y2="380"/>
+        <line x1="180" y1="0" x2="180" y2="380"/>
+        <line x1="240" y1="0" x2="240" y2="380"/>
+        <line x1="300" y1="0" x2="300" y2="380"/>
+        <line x1="360" y1="0" x2="360" y2="380"/>
+        <line x1="420" y1="0" x2="420" y2="380"/>
+      </g>
+
+      <!-- REACTION DIFFUSION LABEL -->
+      <text x="30" y="38" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="2">SURFACE RELIEF — GRAY-SCOTT TURING PATTERNS</text>
+      <line x1="30" y1="42" x2="450" y2="42" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- VARIANT A: SPOTS — square module (Murray: square domain → spots) -->
+      <rect x="32" y="52" width="100" height="100" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen3)"/>
+      <!-- spots as raised nodes in relief -->
+      <g fill="none">
+        <!-- raised spot blobs drawn as contour rings -->
+        <g opacity="0.7" stroke="#1a1612">
+          <circle cx="60" cy="78" r="10" stroke-width="0.8"/>
+          <circle cx="60" cy="78" r="6" stroke-width="1.2"/>
+          <circle cx="60" cy="78" r="2.5" fill="#1a1612" opacity="0.4" stroke-width="0"/>
+          <circle cx="90" cy="68" r="8" stroke-width="0.8"/>
+          <circle cx="90" cy="68" r="4.5" stroke-width="1.2"/>
+          <circle cx="90" cy="68" r="2" fill="#1a1612" opacity="0.4" stroke-width="0"/>
+          <circle cx="72" cy="100" r="9" stroke-width="0.8"/>
+          <circle cx="72" cy="100" r="5" stroke-width="1.2"/>
+          <circle cx="72" cy="100" r="2" fill="#1a1612" opacity="0.4" stroke-width="0"/>
+          <circle cx="108" cy="92" r="7" stroke-width="0.8"/>
+          <circle cx="108" cy="92" r="4" stroke-width="1.2"/>
+          <circle cx="108" cy="92" r="1.8" fill="#1a1612" opacity="0.4" stroke-width="0"/>
+          <circle cx="50" cy="128" r="8" stroke-width="0.8"/>
+          <circle cx="50" cy="128" r="4.5" stroke-width="1.2"/>
+          <circle cx="50" cy="128" r="2" fill="#1a1612" opacity="0.4" stroke-width="0"/>
+          <circle cx="98" cy="118" r="9" stroke-width="0.8"/>
+          <circle cx="98" cy="118" r="5" stroke-width="1.2"/>
+          <circle cx="98" cy="118" r="2.2" fill="#1a1612" opacity="0.4" stroke-width="0"/>
+          <circle cx="125" cy="108" r="6" stroke-width="0.8"/>
+          <circle cx="125" cy="108" r="3.5" stroke-width="1.2"/>
+          <circle cx="125" cy="108" r="1.5" fill="#1a1612" opacity="0.4" stroke-width="0"/>
+          <circle cx="42" cy="100" r="7" stroke-width="0.8"/>
+          <circle cx="42" cy="100" r="4" stroke-width="1.2"/>
+          <circle cx="42" cy="100" r="1.8" fill="#1a1612" opacity="0.4" stroke-width="0"/>
+        </g>
+      </g>
+      <text x="36" y="165" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.5">SQUARE DOMAIN → SPOTS</text>
+      <text x="36" y="174" font-family="Space Mono" font-size="7" fill="#2a4a6b" opacity="0.6">F=0.034, k=0.097</text>
+
+      <!-- VARIANT B: STRIPES — elongated module (Murray: elongated domain → stripes) -->
+      <rect x="160" y="52" width="60" height="100" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen3)"/>
+      <!-- stripes as organic wavy ridges -->
+      <g fill="none" stroke="#1a1612" opacity="0.7">
+        <path d="M 163 65 C 175 60, 185 68, 195 65 C 205 62, 212 58, 218 62" stroke-width="0.8"/>
+        <path d="M 163 72 C 175 67, 185 75, 195 72 C 205 69, 212 65, 218 69" stroke-width="1.5"/>
+        <path d="M 163 79 C 175 74, 185 82, 195 79 C 205 76, 212 72, 218 76" stroke-width="0.8"/>
+
+        <path d="M 163 90 C 172 84, 186 93, 196 88 C 205 84, 213 90, 218 87" stroke-width="0.8"/>
+        <path d="M 163 97 C 172 91, 186 100, 196 95 C 205 91, 213 97, 218 94" stroke-width="1.5"/>
+        <path d="M 163 104 C 172 98, 186 107, 196 102 C 205 98, 213 104, 218 101" stroke-width="0.8"/>
+
+        <path d="M 163 115 C 170 109, 186 118, 196 113 C 205 109, 214 115, 218 112" stroke-width="0.8"/>
+        <path d="M 163 122 C 170 116, 186 125, 196 120 C 205 116, 214 122, 218 119" stroke-width="1.5"/>
+        <path d="M 163 129 C 170 123, 186 132, 196 127 C 205 123, 214 129, 218 126" stroke-width="0.8"/>
+
+        <path d="M 163 140 C 173 134, 184 143, 196 138 C 206 134, 213 140, 218 137" stroke-width="0.8"/>
+        <path d="M 163 147 C 173 141, 184 150, 196 145 C 206 141, 213 147, 218 144" stroke-width="1.5"/>
+      </g>
+      <text x="160" y="165" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.5">ELONGATED → STRIPES</text>
+      <text x="160" y="174" font-family="Space Mono" font-size="7" fill="#2a4a6b" opacity="0.6">F=0.034, k=0.095</text>
+
+      <!-- VARIANT C: LABYRINTH -->
+      <rect x="248" y="52" width="100" height="100" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen3)"/>
+      <!-- labyrinthine pattern — wandering ridges -->
+      <g fill="none" stroke="#1a1612" opacity="0.65">
+        <path d="M 250 80 C 258 70, 268 78, 275 72 C 282 66, 285 74, 292 72 C 299 70, 302 80, 310 78 C 318 76, 320 66, 328 68 C 336 70, 340 80, 348 78" stroke-width="1.5" filter="url(#roughen3)"/>
+        <path d="M 250 95 C 260 88, 264 100, 274 96 C 282 92, 286 104, 296 100 C 304 96, 308 108, 318 104 C 326 100, 330 90, 340 92 C 346 94, 348 102, 348 102" stroke-width="1.5" filter="url(#roughen3)"/>
+        <path d="M 252 110 C 258 104, 264 116, 272 112 C 280 108, 284 118, 294 114 C 302 110, 308 122, 316 118 C 324 114, 330 122, 338 118 C 344 114, 348 120, 348 120" stroke-width="1.5" filter="url(#roughen3)"/>
+        <path d="M 252 126 C 260 120, 268 130, 276 126 C 284 122, 290 132, 298 128 C 306 124, 312 134, 320 130 C 328 126, 334 136, 342 132 C 346 130, 348 134, 348 134" stroke-width="1.5" filter="url(#roughen3)"/>
+        <path d="M 252 142 C 262 136, 270 146, 278 142 C 286 138, 292 148, 300 144 C 308 140, 316 150, 324 146 C 332 142, 338 150, 346 148" stroke-width="1.5" filter="url(#roughen3)"/>
+      </g>
+      <text x="248" y="165" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.5">SQUARE → LABYRINTH</text>
+      <text x="248" y="174" font-family="Space Mono" font-size="7" fill="#2a4a6b" opacity="0.6">F=0.042, k=0.101</text>
+
+      <!-- FUR DIRECTIONAL FLOW LABEL -->
+      <text x="30" y="196" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="2">FUR FLOW — PLANAR CELL POLARITY / DIRECTIONALITY</text>
+      <line x1="30" y1="200" x2="450" y2="200" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- Module face with directional flow lines + whorl -->
+      <rect x="32" y="210" width="130" height="150" fill="none" stroke="#1a1612" stroke-width="1.5" filter="url(#roughen3)"/>
+
+      <!-- Flow lines — caudal direction general flow with whorl convergence -->
+      <g fill="none" stroke="#1a1612" opacity="0.55" stroke-width="0.9">
+        <!-- General rightward/downward flow -->
+        <path d="M 34 220 C 55 218, 75 222, 95 220 C 110 218, 125 222, 160 220" filter="url(#roughen3)"/>
+        <path d="M 34 230 C 50 228, 70 232, 90 230 C 108 228, 124 232, 160 230" filter="url(#roughen3)"/>
+        <path d="M 34 240 C 48 237, 68 242, 88 239 C 106 237, 124 241, 160 240" filter="url(#roughen3)"/>
+        <path d="M 34 252 C 46 248, 62 255, 82 250 C 100 246, 118 252, 160 250" filter="url(#roughen3)"/>
+
+        <!-- Flow lines curving toward whorl center ~95,290 -->
+        <path d="M 34 270 C 45 268, 58 272, 70 275 C 80 278, 88 282, 95 288" filter="url(#roughen3)"/>
+        <path d="M 34 280 C 45 280, 57 283, 68 286 C 78 289, 87 290, 95 292" filter="url(#roughen3)"/>
+        <path d="M 34 290 C 44 291, 56 294, 68 295 C 78 296, 87 295, 95 294" filter="url(#roughen3)"/>
+        <path d="M 34 300 C 44 302, 55 304, 67 303 C 77 302, 86 299, 95 296" filter="url(#roughen3)"/>
+        <path d="M 34 310 C 44 313, 55 313, 67 311 C 77 309, 86 305, 95 300" filter="url(#roughen3)"/>
+        <path d="M 34 320 C 44 323, 54 322, 66 320 C 76 318, 86 311, 95 305" filter="url(#roughen3)"/>
+        <path d="M 34 330 C 44 333, 54 332, 66 328 C 76 324, 86 317, 95 308" filter="url(#roughen3)"/>
+        <path d="M 34 340 C 44 343, 54 341, 65 337 C 75 332, 85 323, 95 312" filter="url(#roughen3)"/>
+        <path d="M 34 350 C 44 353, 54 350, 65 346 C 75 340, 85 330, 95 316" filter="url(#roughen3)"/>
+        <path d="M 34 356 C 44 358, 53 356, 64 352 C 74 346, 84 336, 95 320" filter="url(#roughen3)"/>
+
+        <!-- Lines coming from top right converging -->
+        <path d="M 160 220 C 145 235, 130 250, 115 262 C 107 270, 100 280, 96 290" filter="url(#roughen3)"/>
+        <path d="M 160 230 C 145 244, 130 258, 115 268 C 107 276, 100 284, 96 292" filter="url(#roughen3)"/>
+        <path d="M 160 240 C 146 253, 132 265, 117 274 C 108 280, 101 287, 96 294" filter="url(#roughen3)"/>
+        <path d="M 160 260 C 147 268, 134 276, 120 282 C 110 287, 102 291, 96 296" filter="url(#roughen3)"/>
+        <path d="M 160 280 C 149 284, 136 286, 123 288 C 112 290, 103 292, 96 294" filter="url(#roughen3)"/>
+        <path d="M 160 300 C 150 300, 139 298, 127 297 C 116 296, 105 296, 96 296" filter="url(#roughen3)"/>
+        <path d="M 160 320 C 151 317, 141 311, 130 306 C 119 301, 108 299, 96 299" filter="url(#roughen3)"/>
+        <path d="M 160 340 C 151 335, 141 326, 130 316 C 119 307, 108 302, 96 302" filter="url(#roughen3)"/>
+        <path d="M 160 355 C 150 349, 140 340, 129 328 C 118 316, 107 306, 96 305" filter="url(#roughen3)"/>
+      </g>
+
+      <!-- Whorl center marker -->
+      <circle cx="96" cy="296" r="8" fill="none" stroke="#8b3a2a" stroke-width="1.2" opacity="0.7"/>
+      <circle cx="96" cy="296" r="3" fill="#8b3a2a" opacity="0.5"/>
+      <text x="108" y="294" font-family="Space Mono" font-size="7" fill="#8b3a2a" opacity="0.7">whorl</text>
+      <text x="108" y="304" font-family="Space Mono" font-size="7" fill="#8b3a2a" opacity="0.7">convergence</text>
+
+      <!-- SECTION SHOWING RELIEF DEPTH -->
+      <text x="185" y="210" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="1">SECTION — RELIEF DEPTH RANGE</text>
+
+      <!-- Cross section showing stripes in relief -->
+      <rect x="185" y="218" width="120" height="60" fill="none" stroke="#1a1612" stroke-width="1.2" filter="url(#roughen3)"/>
+      <!-- Wavy relief top surface -->
+      <path d="M 185 230 C 193 222, 201 238, 209 230 C 217 222, 225 238, 233 230 C 241 222, 249 238, 257 230 C 265 222, 273 238, 281 230 C 289 222, 297 238, 305 230"
+            fill="none" stroke="#1a1612" stroke-width="2" filter="url(#roughen3)"/>
+      <!-- Hatching -->
+      <g stroke="#1a1612" stroke-width="0.6" opacity="0.18">
+        <line x1="187" y1="232" x2="187" y2="277"/><line x1="193" y1="224" x2="193" y2="277"/>
+        <line x1="199" y1="232" x2="199" y2="277"/><line x1="205" y1="238" x2="205" y2="277"/>
+        <line x1="211" y1="230" x2="211" y2="277"/><line x1="217" y1="222" x2="217" y2="277"/>
+        <line x1="223" y1="230" x2="223" y2="277"/><line x1="229" y1="238" x2="229" y2="277"/>
+        <line x1="235" y1="230" x2="235" y2="277"/><line x1="241" y1="222" x2="241" y2="277"/>
+        <line x1="247" y1="230" x2="247" y2="277"/><line x1="253" y1="238" x2="253" y2="277"/>
+        <line x1="259" y1="230" x2="259" y2="277"/><line x1="265" y1="222" x2="265" y2="277"/>
+        <line x1="271" y1="230" x2="271" y2="277"/><line x1="277" y1="238" x2="277" y2="277"/>
+        <line x1="283" y1="230" x2="283" y2="277"/><line x1="289" y1="222" x2="289" y2="277"/>
+        <line x1="295" y1="230" x2="295" y2="277"/><line x1="301" y1="238" x2="301" y2="277"/>
+      </g>
+      <!-- depth annotation -->
+      <line x1="308" y1="222" x2="318" y2="222" stroke="#2a4a6b" stroke-width="0.8" stroke-dasharray="2,1"/>
+      <line x1="308" y1="238" x2="318" y2="238" stroke="#2a4a6b" stroke-width="0.8" stroke-dasharray="2,1"/>
+      <line x1="313" y1="222" x2="313" y2="238" stroke="#2a4a6b" stroke-width="1"/>
+      <text x="320" y="233" font-family="Space Mono" font-size="7" fill="#2a4a6b" opacity="0.8">2–20mm</text>
+
+      <!-- Breed morphospace note -->
+      <text x="185" y="300" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.55">one genome —</text>
+      <text x="185" y="313" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.55">400 breeds</text>
+      <text x="185" y="328" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.4">one module, n parameters</text>
+      <text x="185" y="339" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.4">→ morphospace of variants</text>
+
+      <!-- small breed silhouettes hinting -->
+      <text x="185" y="360" font-family="Space Mono" font-size="7" fill="#8b3a2a" opacity="0.5">IGF1 + BMP3 + HMGA2...</text>
+
+    </svg>
+    <div class="card-title">
+      Reaction-Diffusion Surface &amp; Fur Directionality
+      <span>TERRITORY III / BIOLOGICAL PATTERN</span>
+    </div>
+  </div>
+
+  <!-- SKETCH 4: COMPOSITE -->
+  <div class="sketch-card composite">
+    <div class="card-label">04 — Composite / All Three Territories Simultaneous</div>
+    <svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="roughen4">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="4" seed="12" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.0" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <filter id="roughenLight">
+          <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="7" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.5" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+
+      <rect width="960" height="460" fill="#f5f1e8"/>
+
+      <!-- subtle paper texture lines -->
+      <g opacity="0.04" stroke="#1a1612" stroke-width="0.5">
+        <line x1="0" y1="46" x2="960" y2="46"/>
+        <line x1="0" y1="92" x2="960" y2="92"/>
+        <line x1="0" y1="138" x2="960" y2="138"/>
+        <line x1="0" y1="184" x2="960" y2="184"/>
+        <line x1="0" y1="230" x2="960" y2="230"/>
+        <line x1="0" y1="276" x2="960" y2="276"/>
+        <line x1="0" y1="322" x2="960" y2="322"/>
+        <line x1="0" y1="368" x2="960" y2="368"/>
+        <line x1="0" y1="414" x2="960" y2="414"/>
+        <line x1="46" y1="0" x2="46" y2="460"/>
+        <line x1="92" y1="0" x2="92" y2="460"/>
+        <line x1="138" y1="0" x2="138" y2="460"/>
+        <line x1="184" y1="0" x2="184" y2="460"/>
+        <line x1="230" y1="0" x2="230" y2="460"/>
+        <line x1="276" y1="0" x2="276" y2="460"/>
+        <line x1="322" y1="0" x2="322" y2="460"/>
+        <line x1="368" y1="0" x2="368" y2="460"/>
+        <line x1="414" y1="0" x2="414" y2="460"/>
+        <line x1="460" y1="0" x2="460" y2="460"/>
+        <line x1="506" y1="0" x2="506" y2="460"/>
+        <line x1="552" y1="0" x2="552" y2="460"/>
+        <line x1="598" y1="0" x2="598" y2="460"/>
+        <line x1="644" y1="0" x2="644" y2="460"/>
+        <line x1="690" y1="0" x2="690" y2="460"/>
+        <line x1="736" y1="0" x2="736" y2="460"/>
+        <line x1="782" y1="0" x2="782" y2="460"/>
+        <line x1="828" y1="0" x2="828" y2="460"/>
+        <line x1="874" y1="0" x2="874" y2="460"/>
+        <line x1="920" y1="0" x2="920" y2="460"/>
+      </g>
+
+      <!-- LEFT HALF: Single module studies -->
+      <!-- ELEVATION of composite module — tall center -->
+      <text x="30" y="28" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.45" letter-spacing="2">ELEVATION — SINGLE MODULE COMPOSITE</text>
+
+      <!-- Module rectangle elevation -->
+      <rect x="44" y="40" width="160" height="220" fill="none" stroke="#1a1612" stroke-width="2" filter="url(#roughen4)"/>
+
+      <!-- LAYER 1 (Territory I): Wag-motion trace overlay — ghosted -->
+      <g opacity="0.12" fill="none" stroke="#1a1612" stroke-width="0.8">
+        <path d="M 44 80 Q 90 55 124 80 Q 158 105 170 85 Q 190 65 204 80"/>
+        <path d="M 44 95 Q 88 70 122 95 Q 156 120 170 100 Q 190 80 204 95"/>
+        <path d="M 44 110 Q 86 85 120 110 Q 154 135 170 115 Q 190 95 204 110"/>
+      </g>
+
+      <!-- LAYER 2 (Territory III): Fur flow lines — mid tone -->
+      <g opacity="0.3" fill="none" stroke="#1a1612" stroke-width="0.9" filter="url(#roughenLight)">
+        <path d="M 46 58 C 65 55, 90 60, 115 57 C 135 55, 155 60, 202 58"/>
+        <path d="M 46 68 C 63 65, 88 70, 113 67 C 134 65, 154 69, 202 68"/>
+        <path d="M 46 80 C 62 77, 85 82, 112 79 C 133 77, 153 81, 202 80"/>
+        <path d="M 46 92 C 61 89, 84 94, 110 91 C 132 89, 152 93, 202 92"/>
+        <path d="M 46 106 C 60 103, 82 108, 108 105 C 131 103, 151 107, 202 106"/>
+        <!-- curving toward whorl -->
+        <path d="M 46 120 C 62 118, 78 122, 100 128 C 115 132, 125 140, 130 155"/>
+        <path d="M 46 134 C 60 132, 76 136, 98 142 C 113 146, 123 154, 128 168"/>
+        <path d="M 46 150 C 59 148, 75 153, 96 159 C 111 163, 121 170, 127 183"/>
+        <path d="M 46 168 C 58 167, 74 171, 95 177 C 110 181, 120 187, 126 200"/>
+        <path d="M 46 188 C 58 188, 73 192, 94 197 C 109 201, 119 207, 125 220"/>
+        <path d="M 46 210 C 57 210, 72 213, 93 217 C 108 220, 118 225, 124 238"/>
+        <path d="M 46 230 C 57 231, 71 234, 92 237 C 107 239, 117 243, 122 254"/>
+        <!-- from right side converging -->
+        <path d="M 202 120 C 185 122, 168 128, 152 138 C 141 145, 133 152, 130 158"/>
+        <path d="M 202 140 C 186 142, 169 148, 153 158 C 142 165, 134 172, 130 178"/>
+        <path d="M 202 162 C 187 163, 170 167, 154 176 C 143 182, 135 188, 130 198"/>
+        <path d="M 202 182 C 188 183, 172 186, 156 194 C 145 200, 136 206, 130 216"/>
+        <path d="M 202 204 C 189 205, 173 207, 157 214 C 146 219, 137 224, 130 234"/>
+        <path d="M 202 230 C 190 230, 175 231, 159 237 C 148 241, 138 246, 131 254"/>
+        <path d="M 202 252 C 191 252, 176 252, 160 256 C 149 259, 139 261, 132 260"/>
+      </g>
+
+      <!-- Whorl marker -->
+      <circle cx="128" cy="248" r="12" fill="none" stroke="#8b3a2a" stroke-width="1.2" opacity="0.5" filter="url(#roughenLight)"/>
+      <circle cx="128" cy="248" r="5" fill="none" stroke="#8b3a2a" stroke-width="1" opacity="0.6"/>
+      <circle cx="128" cy="248" r="2" fill="#8b3a2a" opacity="0.5"/>
+
+      <!-- LAYER 3 (Territory III): RD surface texture — spot pattern in oblique -->
+      <g opacity="0.45" fill="none" stroke="#1a1612">
+        <!-- spots as contour marks at various positions on face -->
+        <circle cx="70" cy="72" r="7" stroke-width="0.8"/>
+        <circle cx="70" cy="72" r="4" stroke-width="1.2"/>
+        <circle cx="70" cy="72" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="100" cy="62" r="6" stroke-width="0.8"/>
+        <circle cx="100" cy="62" r="3.5" stroke-width="1.2"/>
+        <circle cx="100" cy="62" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="155" cy="70" r="5.5" stroke-width="0.8"/>
+        <circle cx="155" cy="70" r="3" stroke-width="1.2"/>
+        <circle cx="155" cy="70" r="1.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="80" cy="100" r="7.5" stroke-width="0.8"/>
+        <circle cx="80" cy="100" r="4.5" stroke-width="1.2"/>
+        <circle cx="80" cy="100" r="2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="140" cy="95" r="6" stroke-width="0.8"/>
+        <circle cx="140" cy="95" r="3.5" stroke-width="1.2"/>
+        <circle cx="140" cy="95" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="175" cy="88" r="5" stroke-width="0.8"/>
+        <circle cx="175" cy="88" r="2.8" stroke-width="1.2"/>
+        <circle cx="175" cy="88" r="1.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="62" cy="132" r="6.5" stroke-width="0.8"/>
+        <circle cx="62" cy="132" r="4" stroke-width="1.2"/>
+        <circle cx="62" cy="132" r="1.8" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="108" cy="118" r="7" stroke-width="0.8"/>
+        <circle cx="108" cy="118" r="4.2" stroke-width="1.2"/>
+        <circle cx="108" cy="118" r="2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="168" cy="120" r="5.5" stroke-width="0.8"/>
+        <circle cx="168" cy="120" r="3.2" stroke-width="1.2"/>
+        <circle cx="168" cy="120" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="192" cy="136" r="5" stroke-width="0.8"/>
+        <circle cx="192" cy="136" r="2.8" stroke-width="1.2"/>
+        <circle cx="192" cy="136" r="1.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="58" cy="170" r="6" stroke-width="0.8"/>
+        <circle cx="58" cy="170" r="3.5" stroke-width="1.2"/>
+        <circle cx="58" cy="170" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="90" cy="160" r="5.5" stroke-width="0.8"/>
+        <circle cx="90" cy="160" r="3.2" stroke-width="1.2"/>
+        <circle cx="90" cy="160" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="158" cy="168" r="6" stroke-width="0.8"/>
+        <circle cx="158" cy="168" r="3.5" stroke-width="1.2"/>
+        <circle cx="158" cy="168" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="185" cy="185" r="5" stroke-width="0.8"/>
+        <circle cx="185" cy="185" r="2.8" stroke-width="1.2"/>
+        <circle cx="185" cy="185" r="1.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+      </g>
+
+      <!-- LAYER 4 (Territory II): Apertures — punched through, dappled distribution -->
+      <g fill="#d4ceba" stroke="#1a1612" stroke-width="1">
+        <!-- cluster dense lower left -->
+        <circle cx="68" cy="192" r="5.5"/><circle cx="82" cy="200" r="4.5"/>
+        <circle cx="60" cy="208" r="4"/><circle cx="75" cy="214" r="6"/>
+        <circle cx="90" cy="206" r="4"/><circle cx="65" cy="222" r="3.5"/>
+        <circle cx="80" cy="226" r="4.5"/><circle cx="95" cy="218" r="5"/>
+        <circle cx="72" cy="234" r="4"/><circle cx="86" cy="240" r="5"/>
+        <!-- sparse upper right -->
+        <circle cx="168" cy="52" r="4.5"/><circle cx="182" cy="60" r="3.5"/>
+        <circle cx="158" cy="64" r="4"/><circle cx="175" cy="72" r="5"/>
+        <circle cx="190" cy="68" r="3"/>
+        <!-- scattered -->
+        <circle cx="118" cy="148" r="3.5"/><circle cx="145" cy="178" r="4"/>
+        <circle cx="105" cy="186" r="3"/><circle cx="192" cy="145" r="3.5"/>
+        <circle cx="200" cy="180" r="3"/><circle cx="112" cy="234" r="4"/>
+        <circle cx="165" cy="220" r="3.5"/><circle cx="195" cy="225" r="3"/>
+      </g>
+
+      <!-- Projected light spots below -->
+      <g opacity="0.2" fill="#c8a84b">
+        <ellipse cx="68" cy="275" rx="8" ry="3.5"/>
+        <ellipse cx="82" cy="278" rx="6" ry="3"/>
+        <ellipse cx="75" cy="271" rx="9" ry="4"/>
+        <ellipse cx="90" cy="273" rx="6" ry="2.8"/>
+        <ellipse cx="65" cy="282" rx="5" ry="2.5"/>
+      </g>
+
+      <!-- Ground line -->
+      <line x1="30" y1="268" x2="215" y2="268" stroke="#1a1612" stroke-width="1" opacity="0.35"/>
+
+      <!-- Shadow cast on ground -->
+      <rect x="44" y="268" width="160" height="5" fill="#1a1612" opacity="0.06"/>
+
+      <!-- SECTION of composite module -->
+      <text x="44" y="302" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.5" letter-spacing="1.5">SECTION A-A</text>
+      <line x1="44" y1="306" x2="205" y2="306" stroke="#1a1612" stroke-width="0.5" opacity="0.25"/>
+
+      <!-- Section profile: asymmetric sine (T1) + ribbed surface (T3) + apertures (T2) -->
+      <path d="M 44 360
+               C 60 318, 82 315, 100 340
+               C 112 358, 124 370, 140 360
+               C 152 350, 164 330, 180 338
+               C 190 343, 198 348, 204 352
+               L 204 420 L 44 420 Z"
+            fill="none" stroke="#1a1612" stroke-width="2" filter="url(#roughen4)"/>
+      <!-- hatching section -->
+      <g opacity="0.15" stroke="#1a1612" stroke-width="0.7">
+        <line x1="48" y1="358" x2="68" y2="420"/>
+        <line x1="60" y1="338" x2="84" y2="420"/>
+        <line x1="74" y1="322" x2="100" y2="420"/>
+        <line x1="88" y1="326" x2="116" y2="420"/>
+        <line x1="102" y1="342" x2="132" y2="420"/>
+        <line x1="116" y1="356" x2="148" y2="420"/>
+        <line x1="130" y1="358" x2="164" y2="420"/>
+        <line x1="144" y1="354" x2="180" y2="420"/>
+        <line x1="158" y1="342" x2="196" y2="420"/>
+        <line x1="172" y1="334" x2="204" y2="386"/>
+        <line x1="186" y1="336" x2="204" y2="368"/>
+        <line x1="198" y1="340" x2="204" y2="352"/>
+      </g>
+      <!-- aperture tunnel in section -->
+      <path d="M 102 340 L 98 420 M 118 338 L 114 420" stroke="#1a1612" stroke-width="0.8" opacity="0.5"/>
+      <rect x="98" y="390" width="16" height="30" fill="#d4ceba" opacity="0.6" stroke="#1a1612" stroke-width="0.5"/>
+
+      <!-- dim annotation leaders -->
+      <line x1="44" y1="430" x2="204" y2="430" stroke="#1a1612" stroke-width="0.8" opacity="0.5"/>
+      <line x1="44" y1="426" x2="44" y2="434" stroke="#1a1612" stroke-width="0.8" opacity="0.5"/>
+      <line x1="204" y1="426" x2="204" y2="434" stroke="#1a1612" stroke-width="0.8" opacity="0.5"/>
+      <text x="100" y="444" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5">6–8 in.</text>
+
+      <!-- RIGHT HALF: Three territory layers revealed + array -->
+      <line x1="240" y1="20" x2="240" y2="450" stroke="#1a1612" stroke-width="0.8" opacity="0.2" stroke-dasharray="4,4"/>
+
+      <!-- LAYER DECOMPOSITION diagram -->
+      <text x="258" y="28" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.45" letter-spacing="2">LAYER DECOMPOSITION — THREE TERRITORIES OVERLAID</text>
+
+      <!-- T1 ghost layer label -->
+      <text x="258" y="50" font-family="Space Mono" font-size="7" fill="#2a4a6b" opacity="0.7">T.I — MOTION</text>
+      <line x1="258" y1="54" x2="380" y2="54" stroke="#2a4a6b" stroke-width="0.5" opacity="0.4"/>
+
+      <rect x="258" y="60" width="110" height="110" fill="none" stroke="#2a4a6b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+      <!-- wag profile ghost -->
+      <path d="M 258 105 C 272 75, 295 72, 315 98 C 325 112, 336 122, 350 112 C 360 102, 366 85, 368 88"
+            fill="none" stroke="#2a4a6b" stroke-width="1.5" stroke-dasharray="5,2" opacity="0.5"/>
+      <!-- motion traces -->
+      <g opacity="0.15" fill="none" stroke="#2a4a6b" stroke-width="0.7">
+        <path d="M 258 95 C 274 67, 297 65, 315 90 C 326 105, 336 115, 350 105"/>
+        <path d="M 258 115 C 272 84, 295 81, 315 106 C 326 120, 336 128, 350 118"/>
+        <path d="M 258 125 C 270 93, 293 90, 315 116 C 326 130, 336 136, 350 128"/>
+      </g>
+      <text x="376" y="118" font-family="IM Fell English" font-size="9" font-style="italic" fill="#2a4a6b" opacity="0.6">wag trace</text>
+      <text x="376" y="130" font-family="IM Fell English" font-size="9" font-style="italic" fill="#2a4a6b" opacity="0.6">profile</text>
+
+      <!-- T2 layer label -->
+      <text x="258" y="190" font-family="Space Mono" font-size="7" fill="#8b3a2a" opacity="0.7">T.II — LIGHT</text>
+      <line x1="258" y1="194" x2="380" y2="194" stroke="#8b3a2a" stroke-width="0.5" opacity="0.4"/>
+
+      <rect x="258" y="200" width="110" height="110" fill="none" stroke="#8b3a2a" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+      <!-- apertures -->
+      <g fill="#d4ceba" stroke="#8b3a2a" stroke-width="0.8" opacity="0.8">
+        <circle cx="280" cy="225" r="5"/><circle cx="300" cy="215" r="4"/>
+        <circle cx="270" cy="240" r="3.5"/><circle cx="290" cy="248" r="5.5"/>
+        <circle cx="312" cy="235" r="4"/><circle cx="275" cy="258" r="3"/>
+        <circle cx="295" cy="262" r="4.5"/><circle cx="322" cy="250" r="3.5"/>
+        <circle cx="340" cy="220" r="4.5"/><circle cx="350" cy="238" r="3.5"/>
+        <circle cx="330" cy="256" r="4"/><circle cx="348" cy="258" r="3"/>
+      </g>
+      <!-- light rays from apertures -->
+      <g opacity="0.2" stroke="#c8a84b" stroke-width="0.8" stroke-dasharray="2,2">
+        <line x1="280" y1="225" x2="278" y2="310"/>
+        <line x1="300" y1="215" x2="298" y2="310"/>
+        <line x1="290" y1="248" x2="288" y2="310"/>
+        <line x1="295" y1="262" x2="293" y2="310"/>
+      </g>
+      <text x="376" y="258" font-family="IM Fell English" font-size="9" font-style="italic" fill="#8b3a2a" opacity="0.6">apertures</text>
+      <text x="376" y="270" font-family="IM Fell English" font-size="9" font-style="italic" fill="#8b3a2a" opacity="0.6">phyllotactic</text>
+
+      <!-- T3 layer label -->
+      <text x="258" y="330" font-family="Space Mono" font-size="7" fill="#1a1612" opacity="0.7">T.III — BIOLOGY</text>
+      <line x1="258" y1="334" x2="380" y2="334" stroke="#1a1612" stroke-width="0.5" opacity="0.4"/>
+
+      <rect x="258" y="340" width="110" height="100" fill="none" stroke="#1a1612" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+      <!-- RD spots + fur flow -->
+      <g opacity="0.5" fill="none" stroke="#1a1612">
+        <circle cx="280" cy="365" r="7" stroke-width="0.8"/>
+        <circle cx="280" cy="365" r="4" stroke-width="1.2"/>
+        <circle cx="280" cy="365" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="310" cy="358" r="5.5" stroke-width="0.8"/>
+        <circle cx="310" cy="358" r="3" stroke-width="1.2"/>
+        <circle cx="310" cy="358" r="1.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="340" cy="368" r="6" stroke-width="0.8"/>
+        <circle cx="340" cy="368" r="3.5" stroke-width="1.2"/>
+        <circle cx="340" cy="368" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="293" cy="395" r="7" stroke-width="0.8"/>
+        <circle cx="293" cy="395" r="4" stroke-width="1.2"/>
+        <circle cx="293" cy="395" r="1.8" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="325" cy="400" r="5" stroke-width="0.8"/>
+        <circle cx="325" cy="400" r="2.8" stroke-width="1.2"/>
+        <circle cx="325" cy="400" r="1.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="352" cy="390" r="4.5" stroke-width="0.8"/>
+        <circle cx="352" cy="390" r="2.5" stroke-width="1.2"/>
+        <circle cx="352" cy="390" r="1" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="268" cy="420" r="5.5" stroke-width="0.8"/>
+        <circle cx="268" cy="420" r="3" stroke-width="1.2"/>
+        <circle cx="268" cy="420" r="1.3" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="308" cy="428" r="6" stroke-width="0.8"/>
+        <circle cx="308" cy="428" r="3.5" stroke-width="1.2"/>
+        <circle cx="308" cy="428" r="1.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="342" cy="424" r="5" stroke-width="0.8"/>
+        <circle cx="342" cy="424" r="2.8" stroke-width="1.2"/>
+        <circle cx="342" cy="424" r="1.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+        <circle cx="363" cy="412" r="4" stroke-width="0.8"/>
+        <circle cx="363" cy="412" r="2.2" stroke-width="1.2"/>
+        <circle cx="363" cy="412" r="1" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+      </g>
+      <!-- flow lines in T3 -->
+      <g opacity="0.2" fill="none" stroke="#1a1612" stroke-width="0.8">
+        <path d="M 260 355 C 270 352, 290 357, 310 354 C 328 351, 345 356, 368 355"/>
+        <path d="M 260 375 C 268 372, 288 377, 308 374 C 326 371, 345 375, 368 374"/>
+        <path d="M 260 415 C 268 413, 285 417, 305 414 C 323 411, 345 415, 368 413"/>
+        <path d="M 260 435 C 268 433, 285 437, 305 434 C 323 431, 345 435, 368 433"/>
+      </g>
+
+      <text x="376" y="395" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.6">RD spots +</text>
+      <text x="376" y="407" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.6">fur flow</text>
+
+      <!-- COMBINE arrows -->
+      <text x="396" y="150" font-family="Space Mono" font-size="16" fill="#1a1612" opacity="0.25">+</text>
+      <text x="396" y="290" font-family="Space Mono" font-size="16" fill="#1a1612" opacity="0.25">+</text>
+
+      <!-- COMPOSITE MODULE — full right column -->
+      <text x="480" y="28" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.45" letter-spacing="2">COMPOSITE MODULE — ALL TERRITORIES SIMULTANEOUS</text>
+      <line x1="480" y1="32" x2="940" y2="32" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- Large composite module face -->
+      <rect x="490" y="44" width="210" height="310" fill="none" stroke="#1a1612" stroke-width="2.5" filter="url(#roughen4)"/>
+
+      <!-- T1 LAYER: Horizontal wag-motion traces across face — subtle ghost -->
+      <g opacity="0.1" fill="none" stroke="#2a4a6b" stroke-width="1">
+        <path d="M 490 90 C 515 65, 545 68, 570 90 C 582 102, 594 112, 610 102 C 622 92, 630 76, 650 82 C 665 87, 675 94, 700 92"/>
+        <path d="M 490 120 C 515 95, 545 98, 570 120 C 582 132, 594 142, 610 132 C 622 122, 630 106, 650 112 C 665 117, 675 124, 700 122"/>
+        <path d="M 490 152 C 513 126, 543 130, 568 152 C 580 164, 592 172, 608 162 C 620 153, 630 137, 650 143 C 665 148, 675 155, 700 153"/>
+      </g>
+
+      <!-- T3 LAYER: Fur flow lines — directional grain visible through everything -->
+      <g opacity="0.22" fill="none" stroke="#1a1612" stroke-width="1" filter="url(#roughenLight)">
+        <path d="M 492 58 C 520 55, 560 60, 600 57 C 635 54, 665 60, 698 58"/>
+        <path d="M 492 70 C 518 67, 558 72, 598 69 C 633 66, 663 71, 698 70"/>
+        <path d="M 492 84 C 516 81, 556 86, 596 82 C 631 79, 661 84, 698 83"/>
+        <path d="M 492 98 C 514 95, 554 100, 593 97 C 629 94, 660 98, 698 97"/>
+        <path d="M 492 114 C 512 111, 551 116, 590 113 C 626 110, 658 114, 698 113"/>
+        <path d="M 492 130 C 510 127, 548 133, 587 130 C 622 127, 655 132, 698 130"/>
+        <path d="M 492 148 C 509 145, 546 151, 584 148 C 619 145, 653 150, 698 148"/>
+        <!-- curving toward whorl -->
+        <path d="M 492 168 C 508 166, 535 172, 562 178 C 582 183, 596 192, 604 210"/>
+        <path d="M 492 188 C 507 187, 533 193, 559 199 C 579 204, 593 213, 601 230"/>
+        <path d="M 492 210 C 506 209, 531 215, 557 220 C 577 225, 591 234, 599 252"/>
+        <path d="M 492 234 C 505 233, 530 238, 555 242 C 575 246, 589 254, 598 270"/>
+        <path d="M 492 260 C 504 260, 528 264, 552 267 C 572 270, 586 277, 597 292"/>
+        <path d="M 492 288 C 504 288, 527 292, 550 294 C 570 296, 584 300, 596 312"/>
+        <path d="M 492 316 C 504 316, 526 320, 548 321 C 568 322, 582 324, 595 334"/>
+        <path d="M 492 342 C 503 343, 524 346, 546 347 C 566 348, 580 349, 595 356"/>
+        <!-- right side converging -->
+        <path d="M 698 168 C 678 170, 655 178, 636 188 C 622 196, 612 206, 606 214"/>
+        <path d="M 698 190 C 679 192, 656 200, 637 210 C 623 218, 613 228, 607 236"/>
+        <path d="M 698 214 C 679 215, 657 223, 638 232 C 624 240, 614 249, 608 257"/>
+        <path d="M 698 240 C 680 241, 658 248, 639 256 C 625 263, 615 270, 609 277"/>
+        <path d="M 698 268 C 680 268, 659 274, 640 281 C 626 287, 616 293, 610 299"/>
+        <path d="M 698 298 C 681 298, 660 303, 641 309 C 627 314, 617 319, 610 324"/>
+        <path d="M 698 330 C 682 330, 661 334, 642 339 C 628 343, 618 347, 611 350"/>
+        <path d="M 698 354 C 683 354, 663 357, 644 361 C 630 364, 620 366, 612 368"/>
+      </g>
+
+      <!-- Whorl marker — composite -->
+      <circle cx="604" cy="316" r="16" fill="none" stroke="#8b3a2a" stroke-width="1.5" opacity="0.4" filter="url(#roughenLight)"/>
+      <circle cx="604" cy="316" r="7" fill="none" stroke="#8b3a2a" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="604" cy="316" r="3" fill="#8b3a2a" opacity="0.4"/>
+
+      <!-- T3 LAYER: RD spot pattern — medium weight -->
+      <g opacity="0.55" fill="none" stroke="#1a1612">
+        <circle cx="522" cy="74" r="9" stroke-width="0.9"/>
+        <circle cx="522" cy="74" r="5.5" stroke-width="1.3"/>
+        <circle cx="522" cy="74" r="2.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="564" cy="66" r="7.5" stroke-width="0.9"/>
+        <circle cx="564" cy="66" r="4.5" stroke-width="1.3"/>
+        <circle cx="564" cy="66" r="1.8" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="620" cy="76" r="8" stroke-width="0.9"/>
+        <circle cx="620" cy="76" r="5" stroke-width="1.3"/>
+        <circle cx="620" cy="76" r="2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="668" cy="68" r="7" stroke-width="0.9"/>
+        <circle cx="668" cy="68" r="4" stroke-width="1.3"/>
+        <circle cx="668" cy="68" r="1.6" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="500" cy="104" r="9" stroke-width="0.9"/>
+        <circle cx="500" cy="104" r="5.5" stroke-width="1.3"/>
+        <circle cx="500" cy="104" r="2.2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="546" cy="108" r="10" stroke-width="0.9"/>
+        <circle cx="546" cy="108" r="6" stroke-width="1.3"/>
+        <circle cx="546" cy="108" r="2.5" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="596" cy="100" r="8" stroke-width="0.9"/>
+        <circle cx="596" cy="100" r="5" stroke-width="1.3"/>
+        <circle cx="596" cy="100" r="2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="648" cy="110" r="7" stroke-width="0.9"/>
+        <circle cx="648" cy="110" r="4.2" stroke-width="1.3"/>
+        <circle cx="648" cy="110" r="1.7" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="690" cy="98" r="8" stroke-width="0.9"/>
+        <circle cx="690" cy="98" r="5" stroke-width="1.3"/>
+        <circle cx="690" cy="98" r="2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="514" cy="142" r="8.5" stroke-width="0.9"/>
+        <circle cx="514" cy="142" r="5.2" stroke-width="1.3"/>
+        <circle cx="514" cy="142" r="2.1" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="568" cy="148" r="9.5" stroke-width="0.9"/>
+        <circle cx="568" cy="148" r="5.8" stroke-width="1.3"/>
+        <circle cx="568" cy="148" r="2.3" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="624" cy="140" r="7.5" stroke-width="0.9"/>
+        <circle cx="624" cy="140" r="4.5" stroke-width="1.3"/>
+        <circle cx="624" cy="140" r="1.8" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="672" cy="150" r="6.5" stroke-width="0.9"/>
+        <circle cx="672" cy="150" r="4" stroke-width="1.3"/>
+        <circle cx="672" cy="150" r="1.6" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="504" cy="182" r="7.5" stroke-width="0.9"/>
+        <circle cx="504" cy="182" r="4.5" stroke-width="1.3"/>
+        <circle cx="504" cy="182" r="1.8" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="550" cy="190" r="8" stroke-width="0.9"/>
+        <circle cx="550" cy="190" r="5" stroke-width="1.3"/>
+        <circle cx="550" cy="190" r="2" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+
+        <circle cx="688" cy="188" r="7" stroke-width="0.9"/>
+        <circle cx="688" cy="188" r="4.2" stroke-width="1.3"/>
+        <circle cx="688" cy="188" r="1.7" fill="#1a1612" stroke-width="0" opacity="0.5"/>
+      </g>
+
+      <!-- T2 LAYER: Apertures — strongest layer, punched through -->
+      <g fill="#c8c0aa" stroke="#1a1612" stroke-width="1.2">
+        <!-- dense lower left cluster -->
+        <circle cx="512" cy="238" r="7"/><circle cx="530" cy="252" r="6"/>
+        <circle cx="500" cy="258" r="5"/><circle cx="520" cy="268" r="8"/>
+        <circle cx="542" cy="260" r="6"/><circle cx="506" cy="280" r="4.5"/>
+        <circle cx="524" cy="284" r="6"/><circle cx="546" cy="274" r="7"/>
+        <circle cx="514" cy="294" r="5"/><circle cx="534" cy="302" r="6.5"/>
+        <circle cx="558" cy="290" r="5.5"/><circle cx="498" cy="296" r="4"/>
+        <!-- upper right cluster -->
+        <circle cx="648" cy="56" r="6.5"/><circle cx="668" cy="66" r="5"/>
+        <circle cx="636" cy="70" r="5.5"/><circle cx="658" cy="80" r="8"/>
+        <circle cx="682" cy="74" r="4.5"/><circle cx="644" cy="84" r="5.5"/>
+        <circle cx="666" cy="92" r="5"/>
+        <!-- scattered medium -->
+        <circle cx="588" cy="222" r="5"/><circle cx="612" cy="250" r="6"/>
+        <circle cx="576" cy="262" r="4.5"/><circle cx="660" cy="220" r="4.5"/>
+        <circle cx="674" cy="240" r="5.5"/><circle cx="692" cy="260" r="4"/>
+        <circle cx="686" cy="282" r="5"/><circle cx="660" cy="290" r="4"/>
+        <circle cx="582" cy="334" r="5.5"/><circle cx="618" cy="348" r="5"/>
+        <circle cx="552" cy="340" r="4"/><circle cx="640" cy="334" r="4.5"/>
+        <circle cx="672" cy="324" r="5"/><circle cx="692" cy="342" r="4"/>
+      </g>
+
+      <!-- Projected light below composite module -->
+      <line x1="480" y1="362" x2="715" y2="362" stroke="#1a1612" stroke-width="1" opacity="0.3"/>
+      <g opacity="0.25" fill="#c8a84b">
+        <ellipse cx="512" cy="380" rx="10" ry="4.5"/>
+        <ellipse cx="530" cy="375" rx="8" ry="3.5"/>
+        <ellipse cx="520" cy="386" rx="12" ry="5.5"/>
+        <ellipse cx="542" cy="382" rx="8" ry="3.8"/>
+        <ellipse cx="506" cy="390" rx="6" ry="3"/>
+        <ellipse cx="534" cy="394" rx="9" ry="4"/>
+        <ellipse cx="558" cy="388" rx="7" ry="3.2"/>
+      </g>
+
+      <!-- Module dimension labels -->
+      <line x1="490" y1="368" x2="700" y2="368" stroke="#1a1612" stroke-width="0.8" opacity="0.5"/>
+      <line x1="490" y1="364" x2="490" y2="372" stroke="#1a1612" stroke-width="0.8" opacity="0.5"/>
+      <line x1="700" y1="364" x2="700" y2="372" stroke="#1a1612" stroke-width="0.8" opacity="0.5"/>
+      <text x="570" y="382" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5">6–8 in.</text>
+
+      <!-- LEGEND / KEY RIGHT SIDE -->
+      <rect x="718" y="44" width="215" height="310" fill="none" stroke="#1a1612" stroke-width="1" opacity="0.15"/>
+
+      <text x="728" y="66" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.5" letter-spacing="1">LAYER KEY</text>
+      <line x1="728" y1="70" x2="925" y2="70" stroke="#1a1612" stroke-width="0.5" opacity="0.2"/>
+
+      <!-- Layer I indicator -->
+      <line x1="728" y1="96" x2="758" y2="96" stroke="#2a4a6b" stroke-width="1.5" stroke-dasharray="5,2" opacity="0.7"/>
+      <text x="765" y="99" font-family="Space Mono" font-size="8" fill="#2a4a6b" opacity="0.8">I. WAG PROFILE</text>
+      <text x="765" y="110" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">asymmetric sine section</text>
+      <text x="765" y="121" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">A_R/A_L ≈ 1.4, macro-scale</text>
+
+      <!-- Layer II indicator -->
+      <line x1="728" y1="148" x2="758" y2="148" stroke="#8b3a2a" stroke-width="2" opacity="0.7"/>
+      <circle cx="743" cy="148" r="4.5" fill="#c8c0aa" stroke="#8b3a2a" stroke-width="1"/>
+      <text x="765" y="151" font-family="Space Mono" font-size="8" fill="#8b3a2a" opacity="0.8">II. APERTURES</text>
+      <text x="765" y="162" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">144° phyllotactic distribution</text>
+      <text x="765" y="173" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">dappled light, micro-scale</text>
+
+      <!-- Layer III indicator -->
+      <circle cx="743" cy="200" r="7" fill="none" stroke="#1a1612" stroke-width="0.8" opacity="0.6"/>
+      <circle cx="743" cy="200" r="4" fill="none" stroke="#1a1612" stroke-width="1.3" opacity="0.7"/>
+      <circle cx="743" cy="200" r="1.5" fill="#1a1612" opacity="0.5"/>
+      <text x="765" y="203" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.8">III. RD SURFACE</text>
+      <text x="765" y="214" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">Gray-Scott spots/stripes</text>
+      <text x="765" y="225" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">fur flow, meso-scale</text>
+
+      <!-- whorl indicator -->
+      <circle cx="743" cy="260" r="7" fill="none" stroke="#8b3a2a" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="743" cy="260" r="3" fill="none" stroke="#8b3a2a" stroke-width="1" opacity="0.6"/>
+      <circle cx="743" cy="260" r="1.2" fill="#8b3a2a" opacity="0.5"/>
+      <text x="765" y="263" font-family="Space Mono" font-size="8" fill="#8b3a2a" opacity="0.7">WHORL POINT</text>
+      <text x="765" y="274" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">PCP convergence</text>
+      <text x="765" y="285" font-family="IM Fell English" font-size="9" font-style="italic" fill="#1a1612" opacity="0.5">anchors composition</text>
+
+      <!-- divider -->
+      <line x1="728" y1="302" x2="925" y2="302" stroke="#1a1612" stroke-width="0.5" opacity="0.2"/>
+
+      <!-- scale note -->
+      <text x="728" y="322" font-family="Space Mono" font-size="8" fill="#1a1612" opacity="0.45" letter-spacing="1">THE ARGUMENT</text>
+      <text x="728" y="338" font-family="IM Fell English" font-size="11" font-style="italic" fill="#1a1612" opacity="0.7">Simple local rules →</text>
+      <text x="728" y="352" font-family="IM Fell English" font-size="11" font-style="italic" fill="#1a1612" opacity="0.7">complex emergent form.</text>
+      <text x="728" y="375" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.5">Wag trace: macro profile.</text>
+      <text x="728" y="389" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.5">RD math: meso surface.</text>
+      <text x="728" y="403" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.5">Phyllotaxis: micro aperture.</text>
+      <text x="728" y="420" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.5">One module. Three scales.</text>
+      <text x="728" y="434" font-family="IM Fell English" font-size="10" font-style="italic" fill="#1a1612" opacity="0.5">All three, simultaneously.</text>
+
+    </svg>
+    <div class="card-title">
+      Composite Module — All Three Territories Simultaneous
+      <span>SYNTHESIS / FROZEN PROCESS</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

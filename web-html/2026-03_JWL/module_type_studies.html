@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barkitecture — Module Type Studies</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:    #16140f;
+    --paper:  #f2ede3;
+    --warm:   #e8e0cc;
+    --tone:   #b8ae98;
+    --shadow: #2a2318;
+    --red:    #7a3020;
+    --blue:   #243d5a;
+    --gold:   #b89040;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    padding: 32px 36px;
+  }
+
+  /* ── HEADER ── */
+  .sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 12px;
+    margin-bottom: 28px;
+  }
+  .sheet-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: .02em;
+  }
+  .sheet-header .sub {
+    font-size: 9px;
+    opacity: .45;
+    margin-top: 3px;
+    font-style: italic;
+  }
+  .sheet-header .meta {
+    text-align: right;
+    font-size: 9px;
+    opacity: .4;
+    line-height: 1.7;
+  }
+
+  /* ── MODULE GRID ── */
+  .module-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .module-card {
+    border: 1px solid var(--ink);
+    background: #f8f4ea;
+    position: relative;
+  }
+
+  .type-flag {
+    position: absolute;
+    top: -1px; left: -1px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Courier Prime', monospace;
+    font-size: 8px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    z-index: 2;
+  }
+
+  .type-flag.a { background: var(--ink); }
+  .type-flag.b { background: #3a3428; }
+  .type-flag.c { background: #5a5040; }
+  .type-flag.d { background: var(--tone); color: var(--ink); }
+
+  .card-footer {
+    border-top: 1px solid var(--tone);
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background: rgba(242,237,227,0.9);
+  }
+  .card-footer .type-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-style: italic;
+  }
+  .card-footer .specs {
+    font-size: 8px;
+    opacity: .5;
+    letter-spacing: .06em;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* ── ARRAY ROW ── */
+  .array-row {
+    border: 1px solid var(--ink);
+    background: #f8f4ea;
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .array-row .type-flag {
+    position: absolute;
+    top: -1px; left: -1px;
+  }
+
+  /* ── GRADIENT WALL ── */
+  .gradient-wall {
+    border: 2px solid var(--ink);
+    background: #f8f4ea;
+  }
+  .gradient-wall .type-flag {
+    position: absolute;
+    top: -1px; left: -1px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="sheet-header">
+  <div>
+    <h1>Barkitecture — Module Type Studies</h1>
+    <div class="sub">Four-type family · Visible transition · Cast concrete · 6–8 in. brick scale</div>
+  </div>
+  <div class="meta">
+    JWL / Cline Design Associates<br>
+    AIA Triangle Barkitecture Pavilion<br>
+    Sheet 02 of Series
+  </div>
+</div>
+
+<!-- ═══════════════════ FOUR MODULE CARDS ═══════════════════ -->
+<div class="module-grid">
+
+  <!-- ── TYPE A ── -->
+  <div class="module-card">
+    <div class="type-flag a">TYPE A — CANOPY</div>
+    <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="rA">
+          <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="4" seed="3"/>
+          <feDisplacementMap in="SourceGraphic" scale=".7" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <filter id="rAl">
+          <feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="3" seed="9"/>
+          <feDisplacementMap in="SourceGraphic" scale=".4" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+      <rect width="520" height="340" fill="#f8f4ea"/>
+
+      <!-- ── LABEL ROW ── -->
+      <text x="18" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">OBLIQUE</text>
+      <text x="200" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">ELEVATION</text>
+      <text x="360" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">SECTION A-A</text>
+      <line x1="14" y1="30" x2="506" y2="30" stroke="#16140f" stroke-width=".5" opacity=".2"/>
+
+      <!-- ════ OBLIQUE VIEW ════ -->
+      <!-- Module body — deep asymmetric sine profile visible in top face -->
+      <!-- Front face (elevation face) -->
+      <path d="M 30 260 L 30 80 L 160 80 L 160 260 Z"
+            fill="#d8d0bc" stroke="#16140f" stroke-width="1.5" filter="url(#rA)"/>
+      <!-- Top face (shows profile depth) — deeply sculpted -->
+      <path d="M 30 80 C 50 38, 80 32, 110 55 C 130 68, 148 72, 160 62
+               L 195 45 C 178 55, 160 58, 148 55 C 130 48, 110 38, 90 28
+               C 62 14, 38 22, 18 58 Z"
+            fill="#c8bfa8" stroke="#16140f" stroke-width="1.2" filter="url(#rA)"/>
+      <!-- Side face (right) -->
+      <path d="M 160 80 L 195 45 L 195 235 L 160 260 Z"
+            fill="#bdb4a0" stroke="#16140f" stroke-width="1.2" filter="url(#rA)"/>
+
+      <!-- RD spot texture on front face — dense, deep relief — contour rings -->
+      <g opacity=".7" fill="none" stroke="#16140f">
+        <!-- row 1 -->
+        <circle cx="58" cy="112" r="11" stroke-width=".9"/>
+        <circle cx="58" cy="112" r="6.5" stroke-width="1.4"/>
+        <circle cx="58" cy="112" r="2.5" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <circle cx="98" cy="103" r="9" stroke-width=".9"/>
+        <circle cx="98" cy="103" r="5.5" stroke-width="1.4"/>
+        <circle cx="98" cy="103" r="2" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <circle cx="138" cy="108" r="10" stroke-width=".9"/>
+        <circle cx="138" cy="108" r="6" stroke-width="1.4"/>
+        <circle cx="138" cy="108" r="2.2" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <!-- row 2 -->
+        <circle cx="46" cy="152" r="10" stroke-width=".9"/>
+        <circle cx="46" cy="152" r="6" stroke-width="1.4"/>
+        <circle cx="46" cy="152" r="2.2" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <circle cx="88" cy="145" r="12" stroke-width=".9"/>
+        <circle cx="88" cy="145" r="7" stroke-width="1.4"/>
+        <circle cx="88" cy="145" r="3" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <circle cx="130" cy="148" r="9" stroke-width=".9"/>
+        <circle cx="130" cy="148" r="5.5" stroke-width="1.4"/>
+        <circle cx="130" cy="148" r="2" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <!-- row 3 -->
+        <circle cx="55" cy="195" r="10" stroke-width=".9"/>
+        <circle cx="55" cy="195" r="6" stroke-width="1.4"/>
+        <circle cx="55" cy="195" r="2.2" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <circle cx="100" cy="188" r="11" stroke-width=".9"/>
+        <circle cx="100" cy="188" r="6.5" stroke-width="1.4"/>
+        <circle cx="100" cy="188" r="2.5" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <circle cx="145" cy="192" r="9" stroke-width=".9"/>
+        <circle cx="145" cy="192" r="5.5" stroke-width="1.4"/>
+        <circle cx="145" cy="192" r="2" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <!-- row 4 -->
+        <circle cx="42" cy="235" r="9" stroke-width=".9"/>
+        <circle cx="42" cy="235" r="5.5" stroke-width="1.4"/>
+        <circle cx="42" cy="235" r="2" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <circle cx="84" cy="232" r="10" stroke-width=".9"/>
+        <circle cx="84" cy="232" r="6" stroke-width="1.4"/>
+        <circle cx="84" cy="232" r="2.2" fill="#16140f" opacity=".45" stroke-width="0"/>
+
+        <circle cx="130" cy="236" r="8" stroke-width=".9"/>
+        <circle cx="130" cy="236" r="5" stroke-width="1.4"/>
+        <circle cx="130" cy="236" r="1.8" fill="#16140f" opacity=".45" stroke-width="0"/>
+      </g>
+
+      <!-- Apertures on front face — dense cluster, phyllotactic -->
+      <g fill="#6a6050" stroke="#16140f" stroke-width="1">
+        <circle cx="52" cy="130" r="6.5"/>
+        <circle cx="72" cy="122" r="5.5"/>
+        <circle cx="62" cy="142" r="5"/>
+        <circle cx="82" cy="118" r="6"/>
+        <circle cx="72" cy="135" r="7"/>
+        <circle cx="92" cy="128" r="5.5"/>
+        <circle cx="82" cy="148" r="6"/>
+        <circle cx="100" cy="140" r="5"/>
+        <circle cx="62" cy="158" r="5.5"/>
+        <circle cx="90" cy="160" r="6.5"/>
+        <circle cx="110" cy="150" r="5"/>
+        <circle cx="50" cy="170" r="5"/>
+        <circle cx="75" cy="168" r="6"/>
+        <circle cx="102" cy="165" r="5.5"/>
+        <circle cx="118" cy="158" r="5"/>
+        <circle cx="45" cy="185" r="5"/>
+        <circle cx="68" cy="180" r="6"/>
+        <circle cx="92" cy="178" r="5.5"/>
+        <circle cx="115" cy="172" r="5"/>
+        <circle cx="130" cy="165" r="5.5"/>
+      </g>
+
+      <!-- Shadow cast on oblique ground -->
+      <path d="M 30 260 L 160 260 L 195 235 L 65 235 Z" fill="#16140f" opacity=".08"/>
+      <!-- Projected light spots from apertures on ground -->
+      <g fill="#b89040" opacity=".22">
+        <ellipse cx="60" cy="272" rx="8" ry="3.5"/>
+        <ellipse cx="78" cy="268" rx="7" ry="3"/>
+        <ellipse cx="96" cy="274" rx="9" ry="4"/>
+        <ellipse cx="115" cy="270" rx="7" ry="3"/>
+        <ellipse cx="72" cy="280" rx="6" ry="2.8"/>
+        <ellipse cx="92" cy="282" rx="8" ry="3.5"/>
+        <ellipse cx="110" cy="278" rx="6" ry="2.5"/>
+      </g>
+
+      <!-- Relief depth annotation on top face -->
+      <line x1="170" y1="48" x2="185" y2="48" stroke="#7a3020" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="170" y1="62" x2="185" y2="62" stroke="#7a3020" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="177" y1="48" x2="177" y2="62" stroke="#7a3020" stroke-width="1"/>
+      <text x="188" y="57" font-family="Courier Prime" font-size="7" fill="#7a3020">18–22mm</text>
+
+      <!-- ════ ELEVATION ════ -->
+      <rect x="198" y="38" width="130" height="215" fill="#d8d0bc" stroke="#16140f" stroke-width="1.5" filter="url(#rA)"/>
+
+      <!-- RD spots elevation — dense, all four quadrants -->
+      <g opacity=".65" fill="none" stroke="#16140f">
+        <circle cx="228" cy="68" r="10" stroke-width=".9"/><circle cx="228" cy="68" r="6" stroke-width="1.3"/><circle cx="228" cy="68" r="2.2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="260" cy="60" r="9" stroke-width=".9"/><circle cx="260" cy="60" r="5.5" stroke-width="1.3"/><circle cx="260" cy="60" r="2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="294" cy="66" r="10" stroke-width=".9"/><circle cx="294" cy="66" r="6" stroke-width="1.3"/><circle cx="294" cy="66" r="2.2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="218" cy="105" r="11" stroke-width=".9"/><circle cx="218" cy="105" r="6.5" stroke-width="1.3"/><circle cx="218" cy="105" r="2.5" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="252" cy="100" r="10" stroke-width=".9"/><circle cx="252" cy="100" r="6" stroke-width="1.3"/><circle cx="252" cy="100" r="2.2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="286" cy="108" r="9" stroke-width=".9"/><circle cx="286" cy="108" r="5.5" stroke-width="1.3"/><circle cx="286" cy="108" r="2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="318" cy="100" r="8" stroke-width=".9"/><circle cx="318" cy="100" r="5" stroke-width="1.3"/><circle cx="318" cy="100" r="1.8" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="228" cy="148" r="11" stroke-width=".9"/><circle cx="228" cy="148" r="6.5" stroke-width="1.3"/><circle cx="228" cy="148" r="2.5" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="266" cy="142" r="10" stroke-width=".9"/><circle cx="266" cy="142" r="6" stroke-width="1.3"/><circle cx="266" cy="142" r="2.2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="302" cy="148" r="9" stroke-width=".9"/><circle cx="302" cy="148" r="5.5" stroke-width="1.3"/><circle cx="302" cy="148" r="2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="218" cy="190" r="10" stroke-width=".9"/><circle cx="218" cy="190" r="6" stroke-width="1.3"/><circle cx="218" cy="190" r="2.2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="254" cy="195" r="11" stroke-width=".9"/><circle cx="254" cy="195" r="6.5" stroke-width="1.3"/><circle cx="254" cy="195" r="2.5" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="292" cy="190" r="9" stroke-width=".9"/><circle cx="292" cy="190" r="5.5" stroke-width="1.3"/><circle cx="292" cy="190" r="2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="320" cy="185" r="8" stroke-width=".9"/><circle cx="320" cy="185" r="5" stroke-width="1.3"/><circle cx="320" cy="185" r="1.8" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="230" cy="232" r="9" stroke-width=".9"/><circle cx="230" cy="232" r="5.5" stroke-width="1.3"/><circle cx="230" cy="232" r="2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="268" cy="238" r="10" stroke-width=".9"/><circle cx="268" cy="238" r="6" stroke-width="1.3"/><circle cx="268" cy="238" r="2.2" fill="#16140f" opacity=".4" stroke-width="0"/>
+        <circle cx="305" cy="232" r="8" stroke-width=".9"/><circle cx="305" cy="232" r="5" stroke-width="1.3"/><circle cx="305" cy="232" r="1.8" fill="#16140f" opacity=".4" stroke-width="0"/>
+      </g>
+
+      <!-- Apertures elevation — dense full-face -->
+      <g fill="#4a4438" stroke="#16140f" stroke-width=".9">
+        <circle cx="220" cy="82" r="6"/><circle cx="238" cy="76" r="5.5"/><circle cx="254" cy="83" r="6.5"/><circle cx="272" cy="77" r="5.5"/><circle cx="288" cy="84" r="6"/><circle cx="306" cy="78" r="5"/><circle cx="318" cy="84" r="5.5"/>
+        <circle cx="214" cy="122" r="6.5"/><circle cx="232" cy="116" r="6"/><circle cx="248" cy="123" r="7"/><circle cx="268" cy="117" r="6"/><circle cx="285" cy="124" r="6.5"/><circle cx="304" cy="118" r="5.5"/><circle cx="320" cy="124" r="6"/>
+        <circle cx="220" cy="162" r="6"/><circle cx="240" cy="156" r="6.5"/><circle cx="258" cy="163" r="6"/><circle cx="278" cy="157" r="6.5"/><circle cx="296" cy="163" r="6"/><circle cx="316" cy="157" r="5.5"/>
+        <circle cx="214" cy="210" r="6.5"/><circle cx="234" cy="204" r="6"/><circle cx="254" cy="210" r="7"/><circle cx="274" cy="204" r="6"/><circle cx="295" cy="210" r="6.5"/><circle cx="315" cy="205" r="5.5"/>
+      </g>
+
+      <!-- Section cut line -->
+      <line x1="263" y1="38" x2="263" y2="253" stroke="#7a3020" stroke-width=".8" stroke-dasharray="4,2" opacity=".6"/>
+      <text x="259" y="35" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".7">A</text>
+      <text x="259" y="258" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".7">A</text>
+
+      <!-- ════ SECTION ════ -->
+      <!-- Module section box -->
+      <rect x="362" y="38" width="130" height="215" fill="none" stroke="#16140f" stroke-width="1.5" filter="url(#rA)" opacity=".3"/>
+
+      <!-- Deep asymmetric sine profile — top surface sculpted aggressively -->
+      <path d="M 362 88
+               C 382 42, 408 38, 432 64
+               C 446 78, 455 90, 468 82
+               C 480 74, 488 56, 492 62"
+            fill="none" stroke="#16140f" stroke-width="2.5" filter="url(#rA)"/>
+      <!-- Section hatching -->
+      <path d="M 362 88 C 382 42, 408 38, 432 64 C 446 78, 455 90, 468 82 C 480 74, 488 56, 492 62
+               L 492 253 L 362 253 Z"
+            fill="#c8bfa8" stroke="none"/>
+      <g stroke="#16140f" stroke-width=".6" opacity=".18">
+        <line x1="364" y1="96" x2="364" y2="253"/><line x1="372" y1="72" x2="372" y2="253"/>
+        <line x1="380" y1="58" x2="380" y2="253"/><line x1="388" y1="52" x2="388" y2="253"/>
+        <line x1="396" y1="48" x2="396" y2="253"/><line x1="404" y1="44" x2="404" y2="253"/>
+        <line x1="412" y1="42" x2="412" y2="253"/><line x1="420" y1="44" x2="420" y2="253"/>
+        <line x1="428" y1="52" x2="428" y2="253"/><line x1="436" y1="62" x2="436" y2="253"/>
+        <line x1="444" y1="72" x2="444" y2="253"/><line x1="452" y1="80" x2="452" y2="253"/>
+        <line x1="460" y1="82" x2="460" y2="253"/><line x1="468" y1="82" x2="468" y2="253"/>
+        <line x1="476" y1="74" x2="476" y2="253"/><line x1="484" y1="62" x2="484" y2="253"/>
+        <line x1="490" y1="58" x2="490" y2="253"/>
+      </g>
+
+      <!-- Aperture tunnels in section — wide (1:2 ratio) -->
+      <rect x="407" y="100" width="18" height="153" fill="#f2ede3" stroke="#16140f" stroke-width=".8" opacity=".85"/>
+      <rect x="455" y="100" width="14" height="153" fill="#f2ede3" stroke="#16140f" stroke-width=".8" opacity=".85"/>
+
+      <!-- Light cones below -->
+      <path d="M 407 253 L 400 310 M 425 253 L 432 310" stroke="#b89040" stroke-width=".8" stroke-dasharray="3,2" opacity=".6"/>
+      <path d="M 455 253 L 449 310 M 469 253 L 475 310" stroke="#b89040" stroke-width=".8" stroke-dasharray="3,2" opacity=".6"/>
+      <ellipse cx="416" cy="312" rx="14" ry="4" fill="#b89040" opacity=".2"/>
+      <ellipse cx="462" cy="312" rx="12" ry="4" fill="#b89040" opacity=".2"/>
+
+      <!-- Profile asymmetry annotation -->
+      <line x1="362" y1="38" x2="350" y2="38" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="362" y1="88" x2="350" y2="88" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="356" y1="38" x2="356" y2="88" stroke="#243d5a" stroke-width="1"/>
+      <text x="330" y="66" font-family="Courier Prime" font-size="7" fill="#243d5a" transform="rotate(-90,330,66)">50mm</text>
+
+      <line x1="492" y1="56" x2="504" y2="56" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="492" y1="88" x2="504" y2="88" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="498" y1="56" x2="498" y2="88" stroke="#243d5a" stroke-width="1"/>
+      <text x="516" y="74" font-family="Courier Prime" font-size="7" fill="#243d5a" transform="rotate(90,516,74)">34mm</text>
+      <text x="505" y="74" font-family="Courier Prime" font-size="7" fill="#243d5a" opacity=".6">A_R</text>
+      <text x="340" y="66" font-family="Courier Prime" font-size="7" fill="#243d5a" opacity=".6">A_L</text>
+
+      <!-- depth callout aperture -->
+      <text x="370" y="310" font-family="Courier Prime" font-size="7" fill="#b89040" opacity=".7">θ≈27° · 1:2 ratio</text>
+    </svg>
+    <div class="card-footer">
+      <div class="type-name">Type A — Canopy / Active</div>
+      <div class="specs">deep relief 18–22mm · dense apertures · high asymmetry<br>Gray-Scott spots · 1:2 aperture ratio · canopy / overhead zone</div>
+    </div>
+  </div>
+
+  <!-- ── TYPE B ── -->
+  <div class="module-card">
+    <div class="type-flag b">TYPE B — FIELD</div>
+    <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="rB">
+          <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="4" seed="11"/>
+          <feDisplacementMap in="SourceGraphic" scale=".7" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+      <rect width="520" height="340" fill="#f8f4ea"/>
+
+      <text x="18" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">OBLIQUE</text>
+      <text x="200" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">ELEVATION</text>
+      <text x="360" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">SECTION B-B</text>
+      <line x1="14" y1="30" x2="506" y2="30" stroke="#16140f" stroke-width=".5" opacity=".2"/>
+
+      <!-- OBLIQUE — moderate depth -->
+      <path d="M 30 260 L 30 85 L 160 85 L 160 260 Z" fill="#d4cab8" stroke="#16140f" stroke-width="1.5" filter="url(#rB)"/>
+      <!-- Top face: moderate profile -->
+      <path d="M 30 85 C 48 58, 76 54, 104 72 C 120 82, 138 86, 160 76
+               L 195 58 C 170 68, 152 72, 136 65 C 112 55, 88 40, 62 44
+               C 42 48, 26 60, 18 78 Z"
+            fill="#c0b8a4" stroke="#16140f" stroke-width="1.2" filter="url(#rB)"/>
+      <path d="M 160 85 L 195 58 L 195 238 L 160 260 Z" fill="#b8b09c" stroke="#16140f" stroke-width="1.2" filter="url(#rB)"/>
+
+      <!-- RD labyrinth texture on front — medium depth, wavy ridges -->
+      <g opacity=".55" fill="none" stroke="#16140f" stroke-width="1.2" filter="url(#rB)">
+        <path d="M 33 108 C 45 100, 60 112, 75 106 C 88 100, 98 112, 112 106 C 126 100, 140 110, 155 106"/>
+        <path d="M 33 118 C 44 110, 59 122, 74 116 C 87 110, 97 122, 111 116 C 125 110, 139 120, 154 116"/>
+        <path d="M 33 128 C 43 120, 58 132, 73 126 C 86 120, 96 132, 110 126 C 124 120, 138 130, 153 126"/>
+
+        <path d="M 33 152 C 46 144, 62 156, 77 150 C 90 144, 102 155, 116 150 C 130 144, 144 154, 157 150"/>
+        <path d="M 33 162 C 46 154, 62 166, 77 160 C 90 154, 102 165, 116 160 C 130 154, 144 164, 157 160"/>
+
+        <path d="M 33 190 C 44 182, 59 194, 74 188 C 87 182, 100 193, 115 188 C 129 182, 143 192, 157 188"/>
+        <path d="M 33 200 C 44 192, 59 204, 74 198 C 87 192, 100 203, 115 198 C 129 192, 143 202, 157 198"/>
+        <path d="M 33 210 C 44 202, 59 214, 74 208 C 87 202, 100 213, 115 208 C 129 202, 143 212, 157 208"/>
+
+        <path d="M 33 232 C 46 224, 62 236, 77 230 C 90 224, 104 234, 118 230 C 132 224, 145 234, 157 230"/>
+        <path d="M 33 242 C 46 234, 62 246, 77 240 C 90 234, 104 244, 118 240 C 132 234, 145 244, 157 240"/>
+      </g>
+
+      <!-- Apertures — medium density, scattered field -->
+      <g fill="#5e5648" stroke="#16140f" stroke-width=".9">
+        <circle cx="48" cy="130" r="5.5"/><circle cx="70" cy="124" r="5"/>
+        <circle cx="62" cy="144" r="5.5"/><circle cx="88" cy="136" r="5"/>
+        <circle cx="108" cy="128" r="5.5"/><circle cx="130" cy="134" r="5"/>
+        <circle cx="50" cy="170" r="5"/><circle cx="80" cy="165" r="5.5"/>
+        <circle cx="110" cy="168" r="5"/><circle cx="140" cy="162" r="5.5"/>
+        <circle cx="60" cy="214" r="5"/><circle cx="92" cy="208" r="5.5"/>
+        <circle cx="120" cy="212" r="5"/><circle cx="148" cy="206" r="5"/>
+        <circle cx="42" cy="244" r="5"/><circle cx="72" cy="240" r="5.5"/>
+        <circle cx="102" cy="244" r="5"/><circle cx="132" cy="238" r="5"/>
+      </g>
+
+      <!-- lighter shadow -->
+      <path d="M 30 260 L 160 260 L 195 238 L 65 238 Z" fill="#16140f" opacity=".06"/>
+      <g fill="#b89040" opacity=".15">
+        <ellipse cx="60" cy="272" rx="7" ry="3"/>
+        <ellipse cx="90" cy="268" rx="6" ry="2.5"/>
+        <ellipse cx="118" cy="272" rx="7" ry="3"/>
+        <ellipse cx="80" cy="280" rx="6" ry="2.5"/>
+      </g>
+
+      <!-- ELEVATION -->
+      <rect x="198" y="38" width="130" height="215" fill="#d4cab8" stroke="#16140f" stroke-width="1.5" filter="url(#rB)"/>
+
+      <!-- labyrinth texture elevation -->
+      <g opacity=".5" fill="none" stroke="#16140f" stroke-width="1.1" filter="url(#rB)">
+        <path d="M 200 60 C 218 52, 236 64, 254 58 C 270 52, 284 62, 302 58 C 318 52, 328 60, 328 60"/>
+        <path d="M 200 70 C 218 62, 236 74, 254 68 C 270 62, 284 72, 302 68 C 318 62, 328 70, 328 70"/>
+        <path d="M 200 95 C 215 87, 232 99, 250 93 C 266 87, 282 97, 298 93 C 314 87, 326 95, 328 95"/>
+        <path d="M 200 105 C 215 97, 232 109, 250 103 C 266 97, 282 107, 298 103 C 314 97, 326 105, 328 105"/>
+        <path d="M 200 115 C 215 107, 232 119, 250 113 C 266 107, 282 117, 298 113 C 314 107, 326 115, 328 115"/>
+        <path d="M 200 145 C 216 137, 234 149, 252 143 C 268 137, 284 147, 300 143 C 316 137, 328 145, 328 145"/>
+        <path d="M 200 155 C 216 147, 234 159, 252 153 C 268 147, 284 157, 300 153 C 316 147, 328 155, 328 155"/>
+        <path d="M 200 190 C 214 182, 232 194, 250 188 C 266 182, 282 192, 298 188 C 314 182, 328 190, 328 190"/>
+        <path d="M 200 200 C 214 192, 232 204, 250 198 C 266 192, 282 202, 298 198 C 314 192, 328 200, 328 200"/>
+        <path d="M 200 230 C 216 222, 234 234, 252 228 C 268 222, 284 232, 300 228 C 316 222, 328 230, 328 230"/>
+        <path d="M 200 240 C 216 232, 234 244, 252 238 C 268 232, 284 242, 300 238 C 316 232, 328 240, 328 240"/>
+      </g>
+
+      <!-- apertures elevation — medium -->
+      <g fill="#4a4030" stroke="#16140f" stroke-width=".9">
+        <circle cx="216" cy="80" r="5.5"/><circle cx="240" cy="75" r="5"/><circle cx="264" cy="80" r="5.5"/><circle cx="288" cy="75" r="5"/><circle cx="312" cy="80" r="5.5"/>
+        <circle cx="210" cy="130" r="5"/><circle cx="236" cy="125" r="5.5"/><circle cx="262" cy="130" r="5"/><circle cx="288" cy="125" r="5.5"/><circle cx="315" cy="130" r="5"/>
+        <circle cx="218" cy="175" r="5.5"/><circle cx="246" cy="170" r="5"/><circle cx="272" cy="175" r="5.5"/><circle cx="298" cy="170" r="5"/><circle cx="322" cy="175" r="5"/>
+        <circle cx="212" cy="222" r="5"/><circle cx="240" cy="217" r="5.5"/><circle cx="268" cy="222" r="5"/><circle cx="296" cy="217" r="5.5"/><circle cx="320" cy="222" r="5"/>
+      </g>
+
+      <line x1="263" y1="38" x2="263" y2="253" stroke="#7a3020" stroke-width=".8" stroke-dasharray="4,2" opacity=".6"/>
+      <text x="259" y="35" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".7">B</text>
+      <text x="259" y="258" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".7">B</text>
+
+      <!-- SECTION B — moderate -->
+      <rect x="362" y="38" width="130" height="215" fill="none" stroke="#16140f" stroke-width="1.5" filter="url(#rB)" opacity=".3"/>
+      <path d="M 362 72 C 382 52, 408 48, 432 62 C 448 72, 460 82, 478 76 C 486 72, 491 66, 492 68"
+            fill="none" stroke="#16140f" stroke-width="2.2" filter="url(#rB)"/>
+      <path d="M 362 72 C 382 52, 408 48, 432 62 C 448 72, 460 82, 478 76 C 486 72, 491 66, 492 68
+               L 492 253 L 362 253 Z" fill="#c0b8a4" stroke="none"/>
+      <g stroke="#16140f" stroke-width=".6" opacity=".16">
+        <line x1="364" y1="78" x2="364" y2="253"/><line x1="372" y1="64" x2="372" y2="253"/>
+        <line x1="380" y1="55" x2="380" y2="253"/><line x1="388" y1="50" x2="388" y2="253"/>
+        <line x1="396" y1="48" x2="396" y2="253"/><line x1="404" y1="48" x2="404" y2="253"/>
+        <line x1="412" y1="50" x2="412" y2="253"/><line x1="420" y1="54" x2="420" y2="253"/>
+        <line x1="428" y1="58" x2="428" y2="253"/><line x1="436" y1="62" x2="436" y2="253"/>
+        <line x1="444" y1="66" x2="444" y2="253"/><line x1="452" y1="70" x2="452" y2="253"/>
+        <line x1="460" y1="74" x2="460" y2="253"/><line x1="468" y1="75" x2="468" y2="253"/>
+        <line x1="476" y1="74" x2="476" y2="253"/><line x1="484" y1="70" x2="484" y2="253"/>
+        <line x1="490" y1="67" x2="490" y2="253"/>
+      </g>
+      <!-- medium aperture — 1:4 ratio -->
+      <rect x="408" y="108" width="13" height="145" fill="#f2ede3" stroke="#16140f" stroke-width=".8" opacity=".85"/>
+      <rect x="455" y="108" width="11" height="145" fill="#f2ede3" stroke="#16140f" stroke-width=".8" opacity=".85"/>
+      <!-- Light cones — narrower -->
+      <path d="M 408 253 L 404 310 M 421 253 L 425 310" stroke="#b89040" stroke-width=".8" stroke-dasharray="3,2" opacity=".5"/>
+      <ellipse cx="414" cy="312" rx="9" ry="3" fill="#b89040" opacity=".18"/>
+
+      <!-- Profile annotation -->
+      <line x1="362" y1="48" x2="350" y2="48" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="362" y1="72" x2="350" y2="72" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="356" y1="48" x2="356" y2="72" stroke="#243d5a" stroke-width="1"/>
+      <text x="332" y="62" font-family="Courier Prime" font-size="7" fill="#243d5a" transform="rotate(-90,332,62)">32mm</text>
+      <text x="370" y="310" font-family="Courier Prime" font-size="7" fill="#b89040" opacity=".7">θ≈18° · 1:4 ratio</text>
+    </svg>
+    <div class="card-footer">
+      <div class="type-name">Type B — Field / Standard</div>
+      <div class="specs">medium relief 10–14mm · medium apertures · moderate asymmetry<br>Gray-Scott labyrinth · 1:4 aperture ratio · main field unit</div>
+    </div>
+  </div>
+
+  <!-- ── TYPE C ── -->
+  <div class="module-card">
+    <div class="type-flag c">TYPE C — TRANSITION</div>
+    <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="rC">
+          <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="4" seed="17"/>
+          <feDisplacementMap in="SourceGraphic" scale=".7" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+      <rect width="520" height="340" fill="#f8f4ea"/>
+
+      <text x="18" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">OBLIQUE</text>
+      <text x="200" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">ELEVATION</text>
+      <text x="360" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">SECTION C-C</text>
+      <line x1="14" y1="30" x2="506" y2="30" stroke="#16140f" stroke-width=".5" opacity=".2"/>
+
+      <!-- OBLIQUE — shallow, flatter -->
+      <path d="M 30 260 L 30 90 L 160 90 L 160 260 Z" fill="#c8c2b0" stroke="#16140f" stroke-width="1.5" filter="url(#rC)"/>
+      <!-- Top face: shallow profile -->
+      <path d="M 30 90 C 44 72, 66 68, 92 76 C 110 82, 132 86, 160 80
+               L 195 64 C 165 70, 144 74, 125 68 C 100 60, 78 52, 56 56
+               C 38 60, 24 70, 18 82 Z"
+            fill="#bcb6a4" stroke="#16140f" stroke-width="1.2" filter="url(#rC)"/>
+      <path d="M 160 90 L 195 64 L 195 240 L 160 260 Z" fill="#b2ac9a" stroke="#16140f" stroke-width="1.2" filter="url(#rC)"/>
+
+      <!-- RD stripe texture — shallow, barely raised -->
+      <g opacity=".4" fill="none" stroke="#16140f" stroke-width=".9" filter="url(#rC)">
+        <path d="M 33 112 C 52 107, 72 115, 92 110 C 110 105, 130 112, 155 109"/>
+        <path d="M 33 120 C 52 115, 72 123, 92 118 C 110 113, 130 120, 155 117"/>
+        <path d="M 33 140 C 50 135, 70 143, 90 138 C 108 133, 128 140, 155 137"/>
+        <path d="M 33 148 C 50 143, 70 151, 90 146 C 108 141, 128 148, 155 145"/>
+        <path d="M 33 170 C 51 165, 71 173, 91 168 C 109 163, 129 170, 155 167"/>
+        <path d="M 33 178 C 51 173, 71 181, 91 176 C 109 171, 129 178, 155 175"/>
+        <path d="M 33 200 C 50 195, 70 203, 90 198 C 108 193, 128 200, 155 197"/>
+        <path d="M 33 208 C 50 203, 70 211, 90 206 C 108 201, 128 208, 155 205"/>
+        <path d="M 33 230 C 51 225, 71 233, 91 228 C 109 223, 129 230, 155 227"/>
+        <path d="M 33 238 C 51 233, 71 241, 91 236 C 109 231, 129 238, 155 235"/>
+      </g>
+
+      <!-- Fur flow lines — directionality more visible now relief is shallow -->
+      <g opacity=".25" fill="none" stroke="#16140f" stroke-width=".7">
+        <path d="M 33 100 C 65 97, 100 102, 130 99 C 145 97, 156 100, 160 99"/>
+        <path d="M 33 130 C 60 127, 95 132, 125 129 C 143 127, 156 130, 160 129"/>
+        <path d="M 33 160 C 58 157, 93 162, 123 159 C 141 157, 155 160, 160 159"/>
+        <path d="M 33 190 C 56 187, 91 192, 121 189 C 139 187, 154 190, 160 189"/>
+        <path d="M 33 220 C 55 217, 90 222, 120 219 C 138 217, 153 220, 160 219"/>
+        <path d="M 33 248 C 54 245, 89 250, 118 247 C 137 245, 152 248, 160 247"/>
+      </g>
+
+      <!-- Apertures — sparse, scattered -->
+      <g fill="#6a6254" stroke="#16140f" stroke-width=".9">
+        <circle cx="52" cy="128" r="4.5"/><circle cx="82" cy="122" r="4"/>
+        <circle cx="120" cy="126" r="4.5"/><circle cx="150" cy="120" r="4"/>
+        <circle cx="42" cy="175" r="4"/><circle cx="78" cy="170" r="4.5"/>
+        <circle cx="118" cy="174" r="4"/><circle cx="148" cy="168" r="4.5"/>
+        <circle cx="60" cy="225" r="4.5"/><circle cx="100" cy="220" r="4"/>
+        <circle cx="138" cy="224" r="4.5"/>
+      </g>
+
+      <!-- very faint shadow -->
+      <path d="M 30 260 L 160 260 L 195 240 L 65 240 Z" fill="#16140f" opacity=".04"/>
+      <g fill="#b89040" opacity=".1">
+        <ellipse cx="60" cy="270" rx="5" ry="2"/><ellipse cx="90" cy="266" rx="5" ry="2"/>
+        <ellipse cx="125" cy="269" rx="5" ry="2"/>
+      </g>
+
+      <!-- ELEVATION -->
+      <rect x="198" y="38" width="130" height="215" fill="#c8c2b0" stroke="#16140f" stroke-width="1.5" filter="url(#rC)"/>
+      <g opacity=".38" fill="none" stroke="#16140f" stroke-width=".9" filter="url(#rC)">
+        <path d="M 200 62 C 222 56, 248 64, 272 58 C 292 53, 312 62, 328 58"/>
+        <path d="M 200 70 C 222 64, 248 72, 272 66 C 292 61, 312 70, 328 66"/>
+        <path d="M 200 100 C 220 94, 246 102, 270 96 C 290 91, 310 100, 328 96"/>
+        <path d="M 200 108 C 220 102, 246 110, 270 104 C 290 99, 310 108, 328 104"/>
+        <path d="M 200 144 C 220 138, 246 146, 270 140 C 290 135, 310 144, 328 140"/>
+        <path d="M 200 152 C 220 146, 246 154, 270 148 C 290 143, 310 152, 328 148"/>
+        <path d="M 200 192 C 222 186, 248 194, 272 188 C 292 183, 312 192, 328 188"/>
+        <path d="M 200 200 C 222 194, 248 202, 272 196 C 292 191, 312 200, 328 196"/>
+        <path d="M 200 234 C 220 228, 246 236, 270 230 C 290 225, 310 234, 328 230"/>
+        <path d="M 200 242 C 220 236, 246 244, 270 238 C 290 233, 310 242, 328 238"/>
+      </g>
+
+      <!-- sparse apertures elevation -->
+      <g fill="#5a5244" stroke="#16140f" stroke-width=".9">
+        <circle cx="220" cy="84" r="4.5"/><circle cx="258" cy="79" r="4"/><circle cx="298" cy="84" r="4.5"/>
+        <circle cx="214" cy="128" r="4"/><circle cx="256" cy="123" r="4.5"/><circle cx="298" cy="128" r="4"/><circle cx="322" cy="123" r="4"/>
+        <circle cx="222" cy="174" r="4.5"/><circle cx="266" cy="169" r="4"/><circle cx="308" cy="174" r="4.5"/>
+        <circle cx="212" cy="220" r="4"/><circle cx="258" cy="215" r="4.5"/><circle cx="304" cy="220" r="4"/>
+      </g>
+
+      <!-- fur flow elevation subtle -->
+      <g opacity=".15" fill="none" stroke="#16140f" stroke-width=".7">
+        <path d="M 200 90 C 230 88, 270 91, 310 89 C 322 88, 328 90, 328 90"/>
+        <path d="M 200 140 C 228 138, 268 141, 308 139 C 321 138, 328 140, 328 140"/>
+        <path d="M 200 188 C 226 186, 266 189, 306 187 C 319 186, 328 188, 328 188"/>
+        <path d="M 200 240 C 225 238, 265 241, 305 239 C 318 238, 328 240, 328 240"/>
+      </g>
+
+      <line x1="263" y1="38" x2="263" y2="253" stroke="#7a3020" stroke-width=".8" stroke-dasharray="4,2" opacity=".6"/>
+      <text x="259" y="35" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".7">C</text>
+      <text x="259" y="258" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".7">C</text>
+
+      <!-- SECTION C — shallow -->
+      <rect x="362" y="38" width="130" height="215" fill="none" stroke="#16140f" stroke-width="1.5" filter="url(#rC)" opacity=".3"/>
+      <path d="M 362 60 C 388 52, 416 50, 440 58 C 458 64, 474 68, 492 64"
+            fill="none" stroke="#16140f" stroke-width="2" filter="url(#rC)"/>
+      <path d="M 362 60 C 388 52, 416 50, 440 58 C 458 64, 474 68, 492 64
+               L 492 253 L 362 253 Z" fill="#bcb6a4" stroke="none"/>
+      <g stroke="#16140f" stroke-width=".6" opacity=".14">
+        <line x1="364" y1="62" x2="364" y2="253"/><line x1="374" y1="55" x2="374" y2="253"/>
+        <line x1="384" y1="52" x2="384" y2="253"/><line x1="394" y1="50" x2="394" y2="253"/>
+        <line x1="404" y1="50" x2="404" y2="253"/><line x1="414" y1="50" x2="414" y2="253"/>
+        <line x1="424" y1="52" x2="424" y2="253"/><line x1="434" y1="54" x2="434" y2="253"/>
+        <line x1="444" y1="57" x2="444" y2="253"/><line x1="454" y1="60" x2="454" y2="253"/>
+        <line x1="464" y1="63" x2="464" y2="253"/><line x1="474" y1="65" x2="474" y2="253"/>
+        <line x1="483" y1="64" x2="483" y2="253"/>
+      </g>
+      <!-- sparse aperture — 1:6 ratio — narrow, deep -->
+      <rect x="410" y="90" width="8" height="163" fill="#f2ede3" stroke="#16140f" stroke-width=".8" opacity=".85"/>
+      <rect x="460" y="90" width="8" height="163" fill="#f2ede3" stroke="#16140f" stroke-width=".8" opacity=".85"/>
+      <!-- very tight light cones -->
+      <path d="M 410 253 L 408 310 M 418 253 L 420 310" stroke="#b89040" stroke-width=".8" stroke-dasharray="3,2" opacity=".4"/>
+      <ellipse cx="414" cy="312" rx="5" ry="2" fill="#b89040" opacity=".14"/>
+
+      <line x1="362" y1="50" x2="350" y2="50" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="362" y1="60" x2="350" y2="60" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="356" y1="50" x2="356" y2="60" stroke="#243d5a" stroke-width="1"/>
+      <text x="332" y="57" font-family="Courier Prime" font-size="7" fill="#243d5a" transform="rotate(-90,332,57)">14mm</text>
+      <text x="370" y="310" font-family="Courier Prime" font-size="7" fill="#b89040" opacity=".7">θ≈9.5° · 1:6 ratio</text>
+    </svg>
+    <div class="card-footer">
+      <div class="type-name">Type C — Transition / Edge</div>
+      <div class="specs">shallow relief 4–8mm · sparse apertures · low asymmetry<br>Gray-Scott stripes · 1:6 aperture ratio · edge / corner / base transition</div>
+    </div>
+  </div>
+
+  <!-- ── TYPE D ── -->
+  <div class="module-card">
+    <div class="type-flag d">TYPE D — STRUCTURAL</div>
+    <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="rD">
+          <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="4" seed="22"/>
+          <feDisplacementMap in="SourceGraphic" scale=".6" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+      <rect width="520" height="340" fill="#f8f4ea"/>
+
+      <text x="18" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">OBLIQUE</text>
+      <text x="200" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">ELEVATION</text>
+      <text x="360" y="26" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">SECTION D-D</text>
+      <line x1="14" y1="30" x2="506" y2="30" stroke="#16140f" stroke-width=".5" opacity=".2"/>
+
+      <!-- OBLIQUE — nearly flat top, solid -->
+      <path d="M 30 260 L 30 92 L 160 92 L 160 260 Z" fill="#b8b4a4" stroke="#16140f" stroke-width="1.8" filter="url(#rD)"/>
+      <!-- Top face — barely any profile, just material -->
+      <path d="M 30 92 C 50 86, 80 84, 110 86 C 128 87, 146 88, 160 86
+               L 195 72 C 178 74, 160 75, 142 73 C 118 70, 92 68, 66 70
+               C 46 72, 28 78, 18 86 Z"
+            fill="#aea89a" stroke="#16140f" stroke-width="1.2" filter="url(#rD)"/>
+      <path d="M 160 92 L 195 72 L 195 240 L 160 260 Z" fill="#a8a494" stroke="#16140f" stroke-width="1.2" filter="url(#rD)"/>
+
+      <!-- Only form-release lines — no texture, no apertures, no RD -->
+      <!-- Very faint aggregate texture -->
+      <g opacity=".12" fill="#7a7060" filter="url(#rD)">
+        <circle cx="45" cy="130" r="2"/><circle cx="62" cy="118" r="1.5"/><circle cx="80" cy="134" r="2.5"/>
+        <circle cx="98" cy="122" r="2"/><circle cx="116" cy="136" r="1.8"/><circle cx="134" cy="124" r="2.2"/>
+        <circle cx="150" cy="138" r="1.8"/><circle cx="38" cy="155" r="2.2"/><circle cx="56" cy="148" r="1.8"/>
+        <circle cx="74" cy="160" r="2"/><circle cx="92" cy="152" r="2.5"/><circle cx="110" cy="164" r="1.8"/>
+        <circle cx="128" cy="156" r="2"/><circle cx="146" cy="162" r="2.2"/>
+        <circle cx="42" cy="185" r="1.8"/><circle cx="60" cy="178" r="2.5"/><circle cx="78" cy="190" r="2"/>
+        <circle cx="96" cy="182" r="1.8"/><circle cx="114" cy="188" r="2.2"/><circle cx="132" cy="180" r="2"/>
+        <circle cx="148" cy="188" r="1.8"/><circle cx="35" cy="212" r="2.2"/><circle cx="52" cy="205" r="2"/>
+        <circle cx="70" cy="218" r="1.8"/><circle cx="88" cy="210" r="2.5"/><circle cx="106" cy="218" r="2"/>
+        <circle cx="124" cy="210" r="1.8"/><circle cx="142" cy="216" r="2.2"/>
+        <circle cx="40" cy="240" r="2"/><circle cx="58" cy="235" r="1.8"/><circle cx="76" cy="242" r="2.2"/>
+        <circle cx="95" cy="236" r="2"/><circle cx="114" cy="242" r="1.8"/><circle cx="132" cy="236" r="2"/>
+        <circle cx="150" cy="242" r="2.2"/>
+      </g>
+
+      <!-- Mold release lines only — very faint diagonal seams from formwork -->
+      <g opacity=".1" stroke="#16140f" stroke-width=".5">
+        <line x1="30" y1="92" x2="30" y2="260"/>
+        <line x1="95" y1="92" x2="95" y2="260"/>
+        <line x1="160" y1="92" x2="160" y2="260"/>
+      </g>
+
+      <!-- no shadow projection — flat, grounded -->
+      <path d="M 30 260 L 160 260 L 195 240 L 65 240 Z" fill="#16140f" opacity=".04"/>
+
+      <!-- ELEVATION — clean, nearly blank -->
+      <rect x="198" y="38" width="130" height="215" fill="#b8b4a4" stroke="#16140f" stroke-width="1.8" filter="url(#rD)"/>
+      <!-- aggregate texture elevation -->
+      <g opacity=".1" fill="#7a7060" filter="url(#rD)">
+        <circle cx="216" cy="65" r="2.2"/><circle cx="234" cy="72" r="1.8"/><circle cx="252" cy="60" r="2.5"/><circle cx="270" cy="68" r="2"/><circle cx="288" cy="62" r="1.8"/><circle cx="306" cy="70" r="2.2"/><circle cx="324" cy="64" r="2"/>
+        <circle cx="208" cy="95" r="2"/><circle cx="226" cy="102" r="2.5"/><circle cx="244" cy="90" r="2.2"/><circle cx="262" cy="98" r="1.8"/><circle cx="280" cy="92" r="2"/><circle cx="298" cy="100" r="2.2"/><circle cx="316" cy="94" r="2"/>
+        <circle cx="212" cy="128" r="2.5"/><circle cx="230" cy="135" r="2"/><circle cx="248" cy="122" r="1.8"/><circle cx="266" cy="130" r="2.2"/><circle cx="284" cy="124" r="2"/><circle cx="302" cy="132" r="1.8"/><circle cx="320" cy="126" r="2.2"/>
+        <circle cx="206" cy="160" r="2"/><circle cx="224" cy="167" r="1.8"/><circle cx="242" cy="155" r="2.2"/><circle cx="260" cy="162" r="2.5"/><circle cx="278" cy="156" r="2"/><circle cx="296" cy="164" r="1.8"/><circle cx="314" cy="158" r="2"/>
+        <circle cx="210" cy="195" r="1.8"/><circle cx="228" cy="202" r="2"/><circle cx="246" cy="190" r="2.2"/><circle cx="264" cy="197" r="2.5"/><circle cx="282" cy="191" r="2"/><circle cx="300" cy="198" r="1.8"/><circle cx="318" cy="192" r="2.2"/>
+        <circle cx="214" cy="228" r="2.2"/><circle cx="232" cy="235" r="1.8"/><circle cx="250" cy="222" r="2"/><circle cx="268" cy="230" r="2.5"/><circle cx="286" cy="224" r="1.8"/><circle cx="304" cy="232" r="2"/><circle cx="322" cy="226" r="2.2"/>
+      </g>
+      <!-- NO apertures -->
+
+      <line x1="263" y1="38" x2="263" y2="253" stroke="#7a3020" stroke-width=".8" stroke-dasharray="4,2" opacity=".6"/>
+      <text x="259" y="35" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".7">D</text>
+      <text x="259" y="258" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".7">D</text>
+
+      <!-- SECTION D — flat, dense, opaque -->
+      <rect x="362" y="38" width="130" height="215" fill="none" stroke="#16140f" stroke-width="1.5" filter="url(#rD)" opacity=".3"/>
+      <!-- Near-flat profile — slight manufacturing taper only -->
+      <path d="M 362 56 C 390 52, 430 52, 460 54 C 475 55, 486 56, 492 56"
+            fill="none" stroke="#16140f" stroke-width="1.8" filter="url(#rD)"/>
+      <path d="M 362 56 C 390 52, 430 52, 460 54 C 475 55, 486 56, 492 56
+               L 492 253 L 362 253 Z" fill="#aea89a" stroke="none"/>
+      <g stroke="#16140f" stroke-width=".6" opacity=".12">
+        <line x1="364" y1="57" x2="364" y2="253"/><line x1="378" y1="54" x2="378" y2="253"/>
+        <line x1="392" y1="52" x2="392" y2="253"/><line x1="406" y1="52" x2="406" y2="253"/>
+        <line x1="420" y1="52" x2="420" y2="253"/><line x1="434" y1="52" x2="434" y2="253"/>
+        <line x1="448" y1="53" x2="448" y2="253"/><line x1="462" y1="54" x2="462" y2="253"/>
+        <line x1="476" y1="55" x2="476" y2="253"/><line x1="490" y1="56" x2="490" y2="253"/>
+      </g>
+      <!-- NO apertures — fully opaque -->
+      <!-- solid note -->
+      <text x="400" y="160" font-family="Playfair Display" font-size="11" font-style="italic" fill="#16140f" opacity=".25">solid</text>
+      <text x="406" y="175" font-family="Courier Prime" font-size="7" fill="#16140f" opacity=".2">no apertures</text>
+
+      <line x1="362" y1="52" x2="350" y2="52" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="362" y1="56" x2="350" y2="56" stroke="#243d5a" stroke-width=".8" stroke-dasharray="2,1.5"/>
+      <line x1="356" y1="52" x2="356" y2="56" stroke="#243d5a" stroke-width="1"/>
+      <text x="333" y="56" font-family="Courier Prime" font-size="7" fill="#243d5a" transform="rotate(-90,333,56)">4mm</text>
+      <text x="370" y="310" font-family="Courier Prime" font-size="7" fill="#16140f" opacity=".4">no apertures — opaque</text>
+    </svg>
+    <div class="card-footer">
+      <div class="type-name">Type D — Structural / Ground</div>
+      <div class="specs">no relief · no apertures · flat profile · aggregate face texture only<br>solid / opaque · load-bearing / bench / base zone</div>
+    </div>
+  </div>
+
+</div><!-- /module-grid -->
+
+<!-- ═══════════════════ GRADIENT WALL ARRAY ═══════════════════ -->
+<div style="position:relative; border:2px solid var(--ink); background:#f8f4ea; margin-bottom: 24px;">
+  <div class="type-flag a" style="position:absolute; top:-1px; left:-1px;">ARRAY — VERTICAL GRADIENT · RADIAL ZONING DIAGRAM</div>
+  <svg viewBox="0 0 1060 260" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="rArr">
+        <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="6"/>
+        <feDisplacementMap in="SourceGraphic" scale=".5" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+    <rect width="1060" height="260" fill="#f8f4ea"/>
+
+    <!-- ── VERTICAL GRADIENT WALL (left) ── -->
+    <text x="22" y="28" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">VERTICAL GRADIENT — CANOPY TO BASE</text>
+    <line x1="18" y1="32" x2="460" y2="32" stroke="#16140f" stroke-width=".5" opacity=".2"/>
+
+    <!-- ROW 1 — Type A (canopy) -->
+    <!-- 6 modules across, full aperture + deep relief -->
+    <g transform="translate(22,38)">
+      <!-- Module A x6 -->
+      <g id="mA">
+        <rect x="0" y="0" width="62" height="38" fill="#ccc4b0" stroke="#16140f" stroke-width="1"/>
+        <!-- spots -->
+        <circle cx="14" cy="12" r="5.5" fill="none" stroke="#16140f" stroke-width=".9" opacity=".65"/>
+        <circle cx="14" cy="12" r="3" fill="none" stroke="#16140f" stroke-width="1.3" opacity=".7"/>
+        <circle cx="14" cy="12" r="1.2" fill="#16140f" opacity=".4"/>
+        <circle cx="32" cy="10" r="5" fill="none" stroke="#16140f" stroke-width=".9" opacity=".65"/>
+        <circle cx="32" cy="10" r="2.8" fill="none" stroke="#16140f" stroke-width="1.3" opacity=".7"/>
+        <circle cx="32" cy="10" r="1.1" fill="#16140f" opacity=".4"/>
+        <circle cx="50" cy="12" r="5.5" fill="none" stroke="#16140f" stroke-width=".9" opacity=".65"/>
+        <circle cx="50" cy="12" r="3" fill="none" stroke="#16140f" stroke-width="1.3" opacity=".7"/>
+        <circle cx="50" cy="12" r="1.2" fill="#16140f" opacity=".4"/>
+        <circle cx="10" cy="26" r="5" fill="none" stroke="#16140f" stroke-width=".9" opacity=".65"/>
+        <circle cx="10" cy="26" r="2.8" fill="none" stroke="#16140f" stroke-width="1.3" opacity=".7"/>
+        <circle cx="10" cy="26" r="1.1" fill="#16140f" opacity=".4"/>
+        <circle cx="28" cy="28" r="5.5" fill="none" stroke="#16140f" stroke-width=".9" opacity=".65"/>
+        <circle cx="28" cy="28" r="3" fill="none" stroke="#16140f" stroke-width="1.3" opacity=".7"/>
+        <circle cx="28" cy="28" r="1.2" fill="#16140f" opacity=".4"/>
+        <circle cx="46" cy="26" r="5" fill="none" stroke="#16140f" stroke-width=".9" opacity=".65"/>
+        <circle cx="46" cy="26" r="2.8" fill="none" stroke="#16140f" stroke-width="1.3" opacity=".7"/>
+        <circle cx="46" cy="26" r="1.1" fill="#16140f" opacity=".4"/>
+        <!-- apertures dense -->
+        <circle cx="19" cy="19" r="4.5" fill="#3a3428"/>
+        <circle cx="37" cy="20" r="5" fill="#3a3428"/>
+        <circle cx="55" cy="19" r="4.5" fill="#3a3428"/>
+        <circle cx="8" cy="33" r="4" fill="#3a3428"/>
+        <circle cx="24" cy="34" r="4.5" fill="#3a3428"/>
+        <circle cx="42" cy="33" r="4.5" fill="#3a3428"/>
+        <circle cx="58" cy="34" r="4" fill="#3a3428"/>
+      </g>
+      <use href="#mA" x="62"/><use href="#mA" x="124"/><use href="#mA" x="186"/>
+      <use href="#mA" x="248"/><use href="#mA" x="310"/>
+    </g>
+    <!-- Type A label -->
+    <text x="402" y="56" font-family="Courier Prime" font-size="8" fill="#16140f" opacity=".6">A · canopy</text>
+    <text x="402" y="67" font-family="Courier Prime" font-size="7" fill="#16140f" opacity=".35">deep · dense</text>
+    <line x1="395" y1="58" x2="390" y2="58" stroke="#16140f" stroke-width=".8" opacity=".4"/>
+    <line x1="390" y1="38" x2="390" y2="78" stroke="#16140f" stroke-width=".8" opacity=".2"/>
+
+    <!-- ROW 2 — Type B -->
+    <g transform="translate(22,78)">
+      <g id="mB">
+        <rect x="0" y="0" width="62" height="38" fill="#c2baa8" stroke="#16140f" stroke-width="1"/>
+        <!-- labyrinth texture -->
+        <path d="M 2 10 C 12 6, 22 12, 32 8 C 42 4, 52 10, 60 8" fill="none" stroke="#16140f" stroke-width=".8" opacity=".45"/>
+        <path d="M 2 18 C 12 14, 22 20, 32 16 C 42 12, 52 18, 60 16" fill="none" stroke="#16140f" stroke-width=".8" opacity=".45"/>
+        <path d="M 2 28 C 12 24, 22 30, 32 26 C 42 22, 52 28, 60 26" fill="none" stroke="#16140f" stroke-width=".8" opacity=".45"/>
+        <!-- apertures medium -->
+        <circle cx="14" cy="14" r="4" fill="#4a4030"/>
+        <circle cx="36" cy="12" r="4.5" fill="#4a4030"/>
+        <circle cx="55" cy="14" r="4" fill="#4a4030"/>
+        <circle cx="10" cy="30" r="4" fill="#4a4030"/>
+        <circle cx="32" cy="32" r="4.5" fill="#4a4030"/>
+        <circle cx="54" cy="30" r="4" fill="#4a4030"/>
+      </g>
+      <use href="#mB" x="62"/><use href="#mB" x="124"/><use href="#mB" x="186"/>
+      <use href="#mB" x="248"/><use href="#mB" x="310"/>
+    </g>
+    <text x="402" y="96" font-family="Courier Prime" font-size="8" fill="#16140f" opacity=".6">B · field</text>
+    <text x="402" y="107" font-family="Courier Prime" font-size="7" fill="#16140f" opacity=".35">medium · medium</text>
+    <line x1="395" y1="98" x2="390" y2="98" stroke="#16140f" stroke-width=".8" opacity=".4"/>
+
+    <!-- ROW 3 — Type B again (field is most rows) -->
+    <g transform="translate(22,118)">
+      <use href="#mB" x="0"/><use href="#mB" x="62"/><use href="#mB" x="124"/><use href="#mB" x="186"/>
+      <use href="#mB" x="248"/><use href="#mB" x="310"/>
+    </g>
+
+    <!-- ROW 4 — Type C -->
+    <g transform="translate(22,158)">
+      <g id="mC">
+        <rect x="0" y="0" width="62" height="38" fill="#b4b0a0" stroke="#16140f" stroke-width="1"/>
+        <!-- stripe texture faint -->
+        <path d="M 2 10 C 18 8, 38 12, 58 10" fill="none" stroke="#16140f" stroke-width=".7" opacity=".3"/>
+        <path d="M 2 18 C 18 16, 38 20, 58 18" fill="none" stroke="#16140f" stroke-width=".7" opacity=".3"/>
+        <path d="M 2 28 C 18 26, 38 30, 58 28" fill="none" stroke="#16140f" stroke-width=".7" opacity=".3"/>
+        <!-- apertures sparse -->
+        <circle cx="16" cy="19" r="3.5" fill="#5a5244"/>
+        <circle cx="46" cy="19" r="3.5" fill="#5a5244"/>
+      </g>
+      <use href="#mC" x="62"/><use href="#mC" x="124"/><use href="#mC" x="186"/>
+      <use href="#mC" x="248"/><use href="#mC" x="310"/>
+    </g>
+    <text x="402" y="176" font-family="Courier Prime" font-size="8" fill="#16140f" opacity=".6">C · transition</text>
+    <text x="402" y="187" font-family="Courier Prime" font-size="7" fill="#16140f" opacity=".35">shallow · sparse</text>
+    <line x1="395" y1="178" x2="390" y2="178" stroke="#16140f" stroke-width=".8" opacity=".4"/>
+
+    <!-- ROW 5 — Type D (base) -->
+    <g transform="translate(22,198)">
+      <g id="mD">
+        <rect x="0" y="0" width="62" height="38" fill="#a8a496" stroke="#16140f" stroke-width="1.3"/>
+        <!-- aggregate only -->
+        <g opacity=".1" fill="#6a6050">
+          <circle cx="10" cy="12" r="1.8"/><circle cx="22" cy="18" r="1.5"/><circle cx="34" cy="10" r="2"/>
+          <circle cx="46" cy="16" r="1.8"/><circle cx="58" cy="10" r="1.5"/><circle cx="6" cy="28" r="1.5"/>
+          <circle cx="18" cy="32" r="2"/><circle cx="30" cy="26" r="1.8"/><circle cx="44" cy="30" r="1.5"/>
+          <circle cx="56" cy="26" r="2"/>
+        </g>
+      </g>
+      <use href="#mD" x="62"/><use href="#mD" x="124"/><use href="#mD" x="186"/>
+      <use href="#mD" x="248"/><use href="#mD" x="310"/>
+    </g>
+    <text x="402" y="216" font-family="Courier Prime" font-size="8" fill="#16140f" opacity=".6">D · base</text>
+    <text x="402" y="227" font-family="Courier Prime" font-size="7" fill="#16140f" opacity=".35">flat · opaque</text>
+    <line x1="395" y1="218" x2="390" y2="218" stroke="#16140f" stroke-width=".8" opacity=".4"/>
+
+    <!-- Ground line -->
+    <line x1="22" y1="238" x2="384" y2="238" stroke="#16140f" stroke-width="1" opacity=".3"/>
+
+    <!-- Light projection on ground from Type A -->
+    <g fill="#b89040" opacity=".18">
+      <ellipse cx="50" cy="248" rx="12" ry="4"/>
+      <ellipse cx="82" cy="244" rx="9" ry="3.5"/>
+      <ellipse cx="114" cy="250" rx="13" ry="4.5"/>
+      <ellipse cx="146" cy="246" rx="10" ry="3.5"/>
+      <ellipse cx="178" cy="250" rx="12" ry="4"/>
+      <ellipse cx="210" cy="244" rx="8" ry="3"/>
+      <ellipse cx="240" cy="250" rx="11" ry="4"/>
+      <ellipse cx="270" cy="246" rx="9" ry="3.5"/>
+      <ellipse cx="302" cy="250" rx="12" ry="4"/>
+      <ellipse cx="334" cy="244" rx="9" ry="3"/>
+    </g>
+
+    <!-- ── RADIAL ZONING (right) ── -->
+    <line x1="456" y1="20" x2="456" y2="248" stroke="#16140f" stroke-width="1" opacity=".2"/>
+
+    <text x="474" y="28" font-family="Courier Prime" font-size="7.5" fill="#16140f" opacity=".4" letter-spacing="2">RADIAL ZONING — FOCAL POINT GRADIENT</text>
+    <line x1="470" y1="32" x2="1040" y2="32" stroke="#16140f" stroke-width=".5" opacity=".2"/>
+
+    <!-- Radial array: A at center, B ring, C ring, D outer -->
+    <!-- Row 1: D D C B A A B C D D -->
+    <g transform="translate(470,38)">
+      <use href="#mD" x="0"/><use href="#mD" x="55"/>
+      <use href="#mC" x="110"/><use href="#mB" x="165"/>
+      <use href="#mA" x="220"/><use href="#mA" x="275"/>
+      <use href="#mB" x="330"/><use href="#mC" x="385"/>
+      <use href="#mD" x="440"/><use href="#mD" x="495"/>
+    </g>
+
+    <!-- Row 2: D C B A A A A B C D -->
+    <g transform="translate(470,78)">
+      <use href="#mD" x="0"/><use href="#mC" x="55"/>
+      <use href="#mB" x="110"/><use href="#mA" x="165"/>
+      <use href="#mA" x="220"/><use href="#mA" x="275"/>
+      <use href="#mA" x="330"/><use href="#mB" x="385"/>
+      <use href="#mC" x="440"/><use href="#mD" x="495"/>
+    </g>
+
+    <!-- Row 3 (same as row 2) -->
+    <g transform="translate(470,118)">
+      <use href="#mD" x="0"/><use href="#mC" x="55"/>
+      <use href="#mB" x="110"/><use href="#mA" x="165"/>
+      <use href="#mA" x="220"/><use href="#mA" x="275"/>
+      <use href="#mA" x="330"/><use href="#mB" x="385"/>
+      <use href="#mC" x="440"/><use href="#mD" x="495"/>
+    </g>
+
+    <!-- Row 4: D C B B A B B C C D -->
+    <g transform="translate(470,158)">
+      <use href="#mD" x="0"/><use href="#mC" x="55"/>
+      <use href="#mB" x="110"/><use href="#mB" x="165"/>
+      <use href="#mA" x="220"/><use href="#mB" x="275"/>
+      <use href="#mB" x="330"/><use href="#mC" x="385"/>
+      <use href="#mC" x="440"/><use href="#mD" x="495"/>
+    </g>
+
+    <!-- Row 5: D D C C B C C D D D -->
+    <g transform="translate(470,198)">
+      <use href="#mD" x="0"/><use href="#mD" x="55"/>
+      <use href="#mC" x="110"/><use href="#mC" x="165"/>
+      <use href="#mB" x="220"/><use href="#mC" x="275"/>
+      <use href="#mC" x="330"/><use href="#mD" x="385"/>
+      <use href="#mD" x="440"/><use href="#mD" x="495"/>
+    </g>
+
+    <!-- Ground -->
+    <line x1="470" y1="238" x2="1040" y2="238" stroke="#16140f" stroke-width="1" opacity=".3"/>
+
+    <!-- Focal zone indicator (center active zone) -->
+    <rect x="690" y="36" width="165" height="164" fill="none" stroke="#7a3020" stroke-width="1.2" stroke-dasharray="5,3" opacity=".5"/>
+    <text x="750" y="212" font-family="Playfair Display" font-size="9" font-style="italic" fill="#7a3020" opacity=".6">focal zone</text>
+    <text x="746" y="222" font-family="Courier Prime" font-size="7" fill="#7a3020" opacity=".45">entry / seating</text>
+
+    <!-- Radial gradient arrows -->
+    <path d="M 690 118 L 654 118" stroke="#243d5a" stroke-width=".8" stroke-dasharray="3,2" opacity=".45" marker-end="url(#arr)"/>
+    <path d="M 855 118 L 890 118" stroke="#243d5a" stroke-width=".8" stroke-dasharray="3,2" opacity=".45"/>
+    <text x="598" y="121" font-family="Courier Prime" font-size="7" fill="#243d5a" opacity=".5">D ← C ← B ←</text>
+    <text x="892" y="121" font-family="Courier Prime" font-size="7" fill="#243d5a" opacity=".5">→ B → C → D</text>
+
+  </svg>
+  <div class="card-footer">
+    <div class="type-name">Array Studies — Gradient Wall &amp; Radial Zoning</div>
+    <div class="specs">LEFT: vertical gradient A→D, canopy to base &nbsp;/&nbsp; RIGHT: radial gradient A at focal zone → D at periphery<br>Both arrays use same 4-type family — placement logic determines spatial character</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PARAMETER TABLE ═══════════════════ -->
+<div style="border:1px solid var(--ink); padding:16px 20px; background:#f8f4ea;">
+  <div style="font-size:7.5px; letter-spacing:.14em; opacity:.4; margin-bottom:10px; text-transform:uppercase;">Module Family Parameter Matrix</div>
+  <table style="width:100%; border-collapse:collapse; font-size:9px; font-family:'Courier Prime',monospace;">
+    <thead>
+      <tr style="border-bottom:1.5px solid var(--ink);">
+        <th style="text-align:left; padding:4px 8px; font-weight:700;">Type</th>
+        <th style="text-align:left; padding:4px 8px; font-weight:700;">Relief depth</th>
+        <th style="text-align:left; padding:4px 8px; font-weight:700;">RD pattern</th>
+        <th style="text-align:left; padding:4px 8px; font-weight:700;">Apertures</th>
+        <th style="text-align:left; padding:4px 8px; font-weight:700;">Ap:Depth ratio</th>
+        <th style="text-align:left; padding:4px 8px; font-weight:700;">Profile asymmetry</th>
+        <th style="text-align:left; padding:4px 8px; font-weight:700;">Light quality</th>
+        <th style="text-align:left; padding:4px 8px; font-weight:700;">Zone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--tone);">
+        <td style="padding:5px 8px; font-weight:700;">A — Canopy</td>
+        <td style="padding:5px 8px;">18–22 mm</td>
+        <td style="padding:5px 8px;">Spots (F=.034, k=.097)</td>
+        <td style="padding:5px 8px;">Dense · 20–24/face</td>
+        <td style="padding:5px 8px;">1:2 · θ≈27°</td>
+        <td style="padding:5px 8px;">High · A_R/A_L=1.4</td>
+        <td style="padding:5px 8px;">Dappled · komorebi</td>
+        <td style="padding:5px 8px;">Overhead / canopy</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--tone); background:rgba(0,0,0,.02);">
+        <td style="padding:5px 8px; font-weight:700;">B — Field</td>
+        <td style="padding:5px 8px;">10–14 mm</td>
+        <td style="padding:5px 8px;">Labyrinth (F=.042, k=.101)</td>
+        <td style="padding:5px 8px;">Medium · 10–14/face</td>
+        <td style="padding:5px 8px;">1:4 · θ≈18°</td>
+        <td style="padding:5px 8px;">Moderate · A_R/A_L=1.2</td>
+        <td style="padding:5px 8px;">Sweeping beams</td>
+        <td style="padding:5px 8px;">Main field / mid-wall</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--tone);">
+        <td style="padding:5px 8px; font-weight:700;">C — Transition</td>
+        <td style="padding:5px 8px;">4–8 mm</td>
+        <td style="padding:5px 8px;">Stripes (F=.034, k=.095)</td>
+        <td style="padding:5px 8px;">Sparse · 4–6/face</td>
+        <td style="padding:5px 8px;">1:6 · θ≈9.5°</td>
+        <td style="padding:5px 8px;">Low · A_R/A_L=1.05</td>
+        <td style="padding:5px 8px;">Pinpoints · time-specific</td>
+        <td style="padding:5px 8px;">Edge / corner / base trans.</td>
+      </tr>
+      <tr style="background:rgba(0,0,0,.02);">
+        <td style="padding:5px 8px; font-weight:700;">D — Structural</td>
+        <td style="padding:5px 8px;">None · aggregate face</td>
+        <td style="padding:5px 8px;">None</td>
+        <td style="padding:5px 8px;">None</td>
+        <td style="padding:5px 8px;">Opaque</td>
+        <td style="padding:5px 8px;">None · flat</td>
+        <td style="padding:5px 8px;">None · shadow only</td>
+        <td style="padding:5px 8px;">Base / bench / structural</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
