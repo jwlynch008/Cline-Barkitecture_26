@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barkitecture — Design Process Archive</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    display: flex;
+    flex-direction: column;
+    background: #f4f0e8;
+    font-family: 'Courier New', Courier, monospace;
+    color: #1c1a14;
+  }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  .header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 38px;
+    border-bottom: 1px solid rgba(28,26,20,0.18);
+    background: #f4f0e8;
+  }
+  .header-id {
+    font-size: 7px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: #1c1a14;
+    opacity: 0.6;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .header-title {
+    font-size: 7px;
+    letter-spacing: .20em;
+    text-transform: uppercase;
+    color: #1c1a14;
+    opacity: 0.35;
+  }
+  .header-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #8b3a22;
+    opacity: 0.7;
+  }
+
+  /* ── BODY ───────────────────────────────────────────────── */
+  .body { flex: 1; display: flex; overflow: hidden; }
+
+  /* ── NAV ────────────────────────────────────────────────── */
+  nav {
+    flex-shrink: 0;
+    width: 210px;
+    background: #ece8df;
+    border-right: 1px solid rgba(28,26,20,0.14);
+    overflow-y: auto;
+    padding: 14px 0 20px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(28,26,20,0.12) transparent;
+  }
+  nav::-webkit-scrollbar { width: 3px; }
+  nav::-webkit-scrollbar-track { background: transparent; }
+  nav::-webkit-scrollbar-thumb { background: rgba(28,26,20,0.12); }
+
+  .nav-section {
+    font-size: 6px;
+    letter-spacing: .30em;
+    text-transform: uppercase;
+    color: #1c1a14;
+    opacity: 0.28;
+    padding: 0 18px;
+    margin: 14px 0 6px;
+  }
+  .nav-section:first-child { margin-top: 2px; }
+
+  .nav-divider {
+    height: 1px;
+    background: rgba(28,26,20,0.10);
+    margin: 10px 18px;
+  }
+
+  .nav-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    border-left: 2px solid transparent;
+    cursor: pointer;
+    padding: 9px 18px 9px 16px;
+    transition: background .1s, border-color .1s;
+  }
+  .nav-btn:hover { background: rgba(28,26,20,0.05); }
+  .nav-btn.active {
+    border-left-color: #8b3a22;
+    background: #f4f0e8;
+  }
+
+  .nav-id {
+    display: block;
+    font-size: 6.5px;
+    letter-spacing: .24em;
+    color: #8b3a22;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    font-family: 'Courier New', monospace;
+  }
+  .nav-label {
+    display: block;
+    font-size: 7.5px;
+    letter-spacing: .12em;
+    color: #1c1a14;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+  }
+  .nav-sub {
+    display: block;
+    font-size: 6.5px;
+    letter-spacing: .08em;
+    color: rgba(28,26,20,0.48);
+    text-transform: uppercase;
+    line-height: 1.45;
+    font-family: 'Courier New', monospace;
+  }
+  .nav-tag {
+    display: inline-block;
+    font-size: 5.5px;
+    letter-spacing: .14em;
+    padding: 1px 4px;
+    border: 1px solid rgba(28,26,20,0.20);
+    color: rgba(28,26,20,0.38);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .nav-tag.active-tag { border-color: #8b3a22; color: #8b3a22; }
+  .nav-tag.super { border-color: rgba(28,26,20,0.15); color: rgba(28,26,20,0.28); }
+
+  .nav-sub-btn { padding-left: 28px; position: relative; }
+  .nav-sub-btn::before {
+    content: ''; position: absolute;
+    left: 18px; top: 0; bottom: 50%; width: 1px;
+    background: rgba(28,26,20,0.15);
+  }
+  .nav-sub-btn::after {
+    content: ''; position: absolute;
+    left: 18px; top: 50%; width: 7px; height: 1px;
+    background: rgba(28,26,20,0.15);
+  }
+  .nav-sub-btn.active { border-left-color: #8b3a22; background: #f4f0e8; }
+
+  /* ── CONTENT ────────────────────────────────────────────── */
+  .content { flex: 1; position: relative; overflow: hidden; }
+
+  .panel {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background: #f4f0e8;
+  }
+  .panel.active { display: block; }
+
+  .panel iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ── TEXT PANEL STYLES ──────────────────────────────────── */
+  .text-panel {
+    overflow-y: auto;
+    padding: 48px 60px 60px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(28,26,20,0.12) transparent;
+  }
+  .text-panel::-webkit-scrollbar { width: 4px; }
+  .text-panel::-webkit-scrollbar-thumb { background: rgba(28,26,20,0.12); }
+
+  .tp-eyebrow {
+    font-size: 7px;
+    letter-spacing: .30em;
+    text-transform: uppercase;
+    color: #8b3a22;
+    opacity: 0.8;
+    margin-bottom: 8px;
+  }
+  .tp-title {
+    font-size: 18px;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+    color: #1c1a14;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .tp-subtitle {
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(28,26,20,0.45);
+    margin-bottom: 40px;
+  }
+  .tp-rule {
+    height: 1px;
+    background: rgba(28,26,20,0.14);
+    margin-bottom: 40px;
+  }
+  .tp-section {
+    margin-bottom: 40px;
+  }
+  .tp-section-head {
+    font-size: 7px;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: #8b3a22;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(139,58,34,0.20);
+  }
+  .tp-body {
+    font-size: 11px;
+    line-height: 1.80;
+    color: #1c1a14;
+    max-width: 640px;
+  }
+  .tp-body p { margin-bottom: 12px; }
+  .tp-body p:last-child { margin-bottom: 0; }
+  .tp-body strong { font-weight: bold; }
+  .tp-body em { font-style: italic; }
+
+  .tp-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 900px;
+  }
+  .tp-cols-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    max-width: 900px;
+  }
+
+  .tp-stat {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(28,26,20,0.07);
+  }
+  .tp-stat-val {
+    font-size: 22px;
+    letter-spacing: .04em;
+    color: #1c1a14;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .tp-stat-label {
+    font-size: 7px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(28,26,20,0.45);
+  }
+
+  table.tp-table {
+    width: 100%;
+    max-width: 740px;
+    border-collapse: collapse;
+    font-size: 9.5px;
+    margin-top: 8px;
+  }
+  table.tp-table th {
+    text-align: left;
+    font-size: 6.5px;
+    letter-spacing: .20em;
+    text-transform: uppercase;
+    color: rgba(28,26,20,0.45);
+    padding: 6px 12px 6px 0;
+    border-bottom: 1px solid rgba(28,26,20,0.12);
+    font-weight: normal;
+  }
+  table.tp-table td {
+    padding: 7px 12px 7px 0;
+    border-bottom: 1px solid rgba(28,26,20,0.07);
+    vertical-align: top;
+    line-height: 1.5;
+    color: #1c1a14;
+  }
+  table.tp-table td:first-child { font-weight: bold; min-width: 120px; }
+  table.tp-table td.mono { font-family: 'Courier New', monospace; font-size: 9px; }
+  table.tp-table tr:last-child td { border-bottom: none; }
+
+  .tp-quote {
+    border-left: 2px solid #8b3a22;
+    padding: 10px 18px;
+    margin: 20px 0;
+    max-width: 600px;
+    font-size: 11px;
+    line-height: 1.75;
+    color: rgba(28,26,20,0.75);
+    font-style: italic;
+  }
+  .tp-quote-attr {
+    font-size: 7px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(28,26,20,0.35);
+    font-style: normal;
+    margin-top: 8px;
+    display: block;
+  }
+
+  .tp-tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tp-tag {
+    font-size: 7px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid rgba(28,26,20,0.22);
+    color: rgba(28,26,20,0.55);
+  }
+  .tp-tag.accent { border-color: #8b3a22; color: #8b3a22; }
+
+  .tp-note {
+    font-size: 8.5px;
+    line-height: 1.6;
+    color: rgba(28,26,20,0.50);
+    margin-top: 8px;
+    max-width: 580px;
+  }
+
+  .tp-code {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    background: rgba(28,26,20,0.05);
+    border: 1px solid rgba(28,26,20,0.10);
+    padding: 14px 18px;
+    line-height: 1.65;
+    color: rgba(28,26,20,0.70);
+    max-width: 700px;
+    margin: 12px 0;
+    white-space: pre-wrap;
+  }
+
+  .status-pill {
+    display: inline-block;
+    font-size: 6px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .status-pill.active { background: rgba(139,58,34,0.12); color: #8b3a22; border: 1px solid rgba(139,58,34,0.3); }
+  .status-pill.super  { background: rgba(28,26,20,0.06); color: rgba(28,26,20,0.35); border: 1px solid rgba(28,26,20,0.15); }
+  .status-pill.final  { background: rgba(28,26,20,0.08); color: rgba(28,26,20,0.55); border: 1px solid rgba(28,26,20,0.20); }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────────────────────── -->
+<div class="header">
+  <span class="header-id">// Barkitecture — Design Process Archive</span>
+  <div class="header-right">
+    <span class="header-title">AIA Triangle · Cline Design Associates · 2026</span>
+    <div class="header-dot"></div>
+  </div>
+</div>
+
+<!-- ── BODY ────────────────────────────────────────────────────────── -->
+<div class="body">
+
+  <!-- ── SIDEBAR NAV ──────────────────────────────────────────────── -->
+  <nav>
+
+    <div class="nav-section">Research</div>
+
+    <button class="nav-btn" data-id="00" onclick="show('00')">
+      <span class="nav-id">00</span>
+      <span class="nav-label">Project Brief</span>
+      <span class="nav-sub">Competition + Design Argument</span>
+    </button>
+
+    <button class="nav-btn" data-id="01" onclick="show('01')">
+      <span class="nav-id">01</span>
+      <span class="nav-label">Data Foundation</span>
+      <span class="nav-sub">Ren et al. (2022) · 19,937 Cycles</span>
+    </button>
+
+    <div class="nav-divider"></div>
+    <div class="nav-section">Data Visualization</div>
+
+    <button class="nav-btn" data-id="02" onclick="show('02')">
+      <span class="nav-id">02</span>
+      <span class="nav-label">Concept Sketches</span>
+      <span class="nav-sub">Three Territories · Early Studies</span>
+      <span class="nav-tag super">Ref</span>
+    </button>
+
+    <button class="nav-btn" data-id="03" onclick="show('03')">
+      <span class="nav-id">03</span>
+      <span class="nav-label">Wag Chronophotograph</span>
+      <span class="nav-sub">3D Axon · All 19,937 Cycles</span>
+      <span class="nav-tag active-tag">Final</span>
+    </button>
+
+    <button class="nav-btn nav-sub-btn" data-id="03b" onclick="show('03b')">
+      <span class="nav-id">03 · B</span>
+      <span class="nav-label">Wag Chrono — Revised</span>
+      <span class="nav-sub">Graphic Edits · CDA Version</span>
+      <span class="nav-tag active-tag">Final</span>
+    </button>
+
+    <div class="nav-divider"></div>
+    <div class="nav-section">Module Geometry</div>
+
+    <button class="nav-btn" data-id="04" onclick="show('04')">
+      <span class="nav-id">04</span>
+      <span class="nav-label">Module Type Studies</span>
+      <span class="nav-sub">Four-Type Family · A/B/C/D</span>
+      <span class="nav-tag super">Ref</span>
+    </button>
+
+    <button class="nav-btn" data-id="06" onclick="show('06')">
+      <span class="nav-id">06</span>
+      <span class="nav-label">Module Axonometric</span>
+      <span class="nav-sub">Composite 3D · Primary Geometry</span>
+      <span class="nav-tag active-tag">Active</span>
+    </button>
+
+    <button class="nav-btn" data-id="07" onclick="show('07')">
+      <span class="nav-id">07</span>
+      <span class="nav-label">Module Assembly</span>
+      <span class="nav-sub">5×4 Brick-Bond Coursing</span>
+      <span class="nav-tag active-tag">Active</span>
+    </button>
+
+    <div class="nav-divider"></div>
+    <div class="nav-section">Tessellation</div>
+
+    <button class="nav-btn" data-id="08" onclick="show('08')">
+      <span class="nav-id">08</span>
+      <span class="nav-label">Tessellation Options</span>
+      <span class="nav-sub">Flat Studies A / B / C</span>
+      <span class="nav-tag super">Superseded</span>
+    </button>
+
+    <div class="nav-divider"></div>
+    <div class="nav-section">Truchet Tile Studies</div>
+
+    <button class="nav-btn" data-id="09" onclick="show('09')">
+      <span class="nav-id">09</span>
+      <span class="nav-label">Truchet I</span>
+      <span class="nav-sub">Arc · Loop · Fan (Square)</span>
+      <span class="nav-tag super">Superseded</span>
+    </button>
+
+    <button class="nav-btn" data-id="10" onclick="show('10')">
+      <span class="nav-id">10</span>
+      <span class="nav-label">Truchet II</span>
+      <span class="nav-sub">Wave · Hex Crescent · Triangle</span>
+      <span class="nav-tag super">Superseded</span>
+    </button>
+
+    <button class="nav-btn" data-id="11" onclick="show('11')">
+      <span class="nav-id">11</span>
+      <span class="nav-label">Truchet 3D</span>
+      <span class="nav-sub">Studies E + F · Axonometric</span>
+      <span class="nav-tag super">Superseded</span>
+    </button>
+
+    <button class="nav-btn" data-id="12" onclick="show('12')">
+      <span class="nav-id">12</span>
+      <span class="nav-label">Truchet III</span>
+      <span class="nav-sub">Variance Ribbon + Multi-Scale</span>
+      <span class="nav-tag active-tag">Active</span>
+    </button>
+
+    <div class="nav-divider"></div>
+    <div class="nav-section">Muybridge Study</div>
+
+    <button class="nav-btn" data-id="13" onclick="show('13')">
+      <span class="nav-id">13</span>
+      <span class="nav-label">Study I</span>
+      <span class="nav-sub">Chronophotographic Tile Series</span>
+      <span class="nav-tag active-tag">Newest</span>
+    </button>
+
+  </nav>
+
+  <!-- ── CONTENT AREA ─────────────────────────────────────────────── -->
+  <div class="content">
+
+    <!-- 00: Project Brief -->
+    <div class="panel text-panel" id="panel-00">
+      <div class="tp-eyebrow">00 · Research</div>
+      <div class="tp-title">Project Brief</div>
+      <div class="tp-subtitle">AIA Triangle Barkitecture Competition · Cline Design Associates · 2026</div>
+      <div class="tp-rule"></div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Competition Overview</div>
+        <div class="tp-body">
+          <p><strong>AIA Triangle Barkitecture</strong> is an annual design-build competition for a dog park pavilion. Proceeds benefit local animal rescues. The deliverable is a single cast-concrete module at brick scale (6–12 in.) from which the full pavilion wall or canopy is assembled. Module count, layout, and overall form are design decisions downstream of the module geometry itself.</p>
+          <p>Designer: Cline Design Associates, Raleigh NC. The competition awards Best in Show, Greenest Paw, Craziest Cat, Fat Cat, People's Choice, and Graphic Bark.</p>
+        </div>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Three Concept Territories</div>
+        <div class="tp-body">
+          <p>Three territories were identified at the outset, each sharing the same deep structural principle: <strong>simple local rules generating complex emergent global form.</strong></p>
+        </div>
+        <div class="tp-cols-3" style="margin-top:16px;">
+          <div>
+            <div class="tp-section-head" style="color:#8b3a22;">Territory 1 — Motion</div>
+            <div class="tp-body" style="font-size:10px;">Dog tail wagging kinematics as generative form logic. <strong>Primary impulse for this phase.</strong> Data-derived from Ren et al. (2022): 19,937 wag cycles across 10 dogs.</div>
+          </div>
+          <div>
+            <div class="tp-section-head" style="color:rgba(28,26,20,0.4);">Territory 2 — Light</div>
+            <div class="tp-body" style="font-size:10px; color:rgba(28,26,20,0.5);">Dappled light / komorebi / cherry blossom aperture geometry. Available as secondary layer. Not the driving form generator at this stage.</div>
+          </div>
+          <div>
+            <div class="tp-section-head" style="color:rgba(28,26,20,0.4);">Territory 3 — Biology</div>
+            <div class="tp-body" style="font-size:10px; color:rgba(28,26,20,0.5);">Fur-flow directional texture via Gray-Scott reaction-diffusion. Available as secondary layer. Not the driving form generator at this stage.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Core Design Argument</div>
+        <div class="tp-quote">
+          The module is a <strong>frozen swept volume</strong> — the spatial record of a single tail wag cycle, cast in concrete. The formal logic is chronophotographic: multiple positional states of the same motion collapsed into one object, readable as both sequence and form simultaneously.
+          <span class="tp-quote-attr">— Barkitecture CoWork Briefing, March 2026</span>
+        </div>
+        <div class="tp-body">
+          <p><strong>Precedent: Étienne-Jules Marey (1880s).</strong> Marey's chronophotographs collapse multiple temporal states of a moving subject into a single image. The form that emerges is the envelope of all positions — not any single one. Here, that logic is literalized: a concrete module encodes the full kinematic range of the behavior it celebrates.</p>
+          <p>The geometry is not illustrative — it is derived. Every dimensional parameter (asymmetry, arc, depth, lean) traces directly to peer-reviewed kinematic data. The module's form is the argument's evidence.</p>
+        </div>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Module Type Family</div>
+        <div class="tp-body" style="margin-bottom:14px;"><p>A four-type module family was defined early, applying the wag-derived base geometry with variable surface expression across zones.</p></div>
+        <table class="tp-table">
+          <tr><th>Type</th><th>Relief</th><th>RD Pattern</th><th>Apertures</th><th>Zone</th></tr>
+          <tr><td>A — Canopy</td><td class="mono">18–22mm</td><td>Spots</td><td>Dense (20–24/face)</td><td>Overhead</td></tr>
+          <tr><td>B — Field</td><td class="mono">10–14mm</td><td>Labyrinth</td><td>Medium (10–14/face)</td><td>Mid-wall</td></tr>
+          <tr><td>C — Transition</td><td class="mono">4–8mm</td><td>Stripes</td><td>Sparse (4–6/face)</td><td>Edge/base</td></tr>
+          <tr><td>D — Structural</td><td class="mono">None</td><td>None</td><td>None</td><td>Base/bench</td></tr>
+        </table>
+        <div class="tp-note">Array logic: vertical gradient A→D (canopy to base). Radial gradient A at focal zone → D at periphery. Type variation layers on top of the wag-derived base form.</div>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Key Scientific References</div>
+        <table class="tp-table">
+          <tr><th>Source</th><th>Relevance</th></tr>
+          <tr><td><strong>Ren et al. (2022)</strong> iScience 25(8):104747</td><td>Primary kinematic source. 3D keypoint tracking of tail wag cycles via DeepLabCut. DOI: 10.1016/j.isci.2022.104747 — CC BY 4.0</td></tr>
+          <tr><td>Quaranta, Siniscalchi &amp; Vallortigara (2007) — Current Biology</td><td>Rightward/leftward wag asymmetry encodes positive/negative emotional state</td></tr>
+          <tr><td>Siniscalchi et al. (2013)</td><td>Dogs detect and respond to wag laterality in conspecifics</td></tr>
+          <tr><td>Marey, É-J. (1882)</td><td>Chronophotographic method — formal and methodological precedent</td></tr>
+          <tr><td>Smith, B. (1987)</td><td>Generalization of Truchet tiles — any tile that connects at all rotations</td></tr>
+          <tr><td>Carlson, C. (2004)</td><td>Multi-scale Truchet patterns — self-similar hierarchy at two zoom levels</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 01: Data Foundation -->
+    <div class="panel text-panel" id="panel-01">
+      <div class="tp-eyebrow">01 · Research</div>
+      <div class="tp-title">Data Foundation</div>
+      <div class="tp-subtitle">Ren, Wei, Yu &amp; Zhang (2022) · iScience 25(8):104747 · Mendeley Data DOI: 10.17632/sfp7k9hzkx.1</div>
+      <div class="tp-rule"></div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Dataset Scale</div>
+        <div class="tp-cols" style="max-width:700px; margin-top:4px;">
+          <div>
+            <div class="tp-stat"><div class="tp-stat-val">19,937</div><div class="tp-stat-label">Wag Cycles (total)</div></div>
+            <div class="tp-stat"><div class="tp-stat-val">10</div><div class="tp-stat-label">Dogs</div></div>
+            <div class="tp-stat"><div class="tp-stat-val">3</div><div class="tp-stat-label">Sessions per dog</div></div>
+          </div>
+          <div>
+            <div class="tp-stat"><div class="tp-stat-val">76</div><div class="tp-stat-label">Normalized time steps per cycle</div></div>
+            <div class="tp-stat"><div class="tp-stat-val">3</div><div class="tp-stat-label">Tracked coordinates (X, Y, Z)</div></div>
+            <div class="tp-stat"><div class="tp-stat-val">ResNet101</div><div class="tp-stat-label">DeepLabCut tracking backbone</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Key Derived Statistics</div>
+        <table class="tp-table">
+          <tr><th>Parameter</th><th>Value</th><th>Notes</th></tr>
+          <tr><td>R amplitude (mean_x max)</td><td class="mono">0.3383</td><td>Rightward swing, normalized coords</td></tr>
+          <tr><td>L amplitude (mean_x min)</td><td class="mono">−0.1859</td><td>Leftward swing, normalized coords</td></tr>
+          <tr><td>R/L asymmetry ratio</td><td class="mono">1.819</td><td>Right-dominant — encodes positive/approach emotional state</td></tr>
+          <tr><td>L apex index</td><td class="mono">i = 27 / 76</td><td>Frame at maximum leftward displacement</td></tr>
+          <tr><td>Total angular sweep</td><td class="mono">98.8°</td><td>R = 54.7°, L = 44.1°</td></tr>
+          <tr><td>Dwelling centroid offset</td><td class="mono">9.69°</td><td>Mean center of dwelling time (drives module lean)</td></tr>
+          <tr><td>Dwelling peak (R apex)</td><td class="mono">t = 0.747</td><td>Tail lingers longest at right apex</td></tr>
+          <tr><td>Dwelling peak (L apex)</td><td class="mono">t = 0.360</td><td>Secondary dwelling peak</td></tr>
+          <tr><td>Y-Z correlation</td><td class="mono">0.927</td><td>Depth couples tightly to vertical — the wag is fundamentally 3D</td></tr>
+        </table>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Data Pipeline</div>
+        <div class="tp-body" style="margin-bottom:12px;"><p>Raw data: comma-delimited x/y/z.txt files per dog per session. Rows are individual cycles; 76 values per row. Filtered to exactly 76-value rows → 19,937 valid cycles.</p></div>
+        <div class="tp-code">
+# Step 1 — Load
+X = np.array([row for dog in dogs for row in load_rows(dog,'x') if len(row)==76])  # (19937, 76)
+
+# Step 2 — Core derivations
+mean_x        = np.mean(X, axis=0)           # (76,) mean lateral profile
+dX            = np.gradient(mean_x)          # angular velocity
+dwelling_norm = 1 / np.abs(dX)              # dwelling time
+dwelling_norm /= dwelling_norm.max()         # normalize [0, 1]
+
+# Step 3 — Percentile arrays (X-direction spread across all cycles)
+p5x  = np.percentile(X, 5,  axis=0)         # (76,) lower extreme
+p25x = np.percentile(X, 25, axis=0)         # (76,) lower quartile
+p75x = np.percentile(X, 75, axis=0)         # (76,) upper quartile
+p95x = np.percentile(X, 95, axis=0)         # (76,) upper extreme
+
+L_APEX = np.argmin(mean_x)                  # = 27
+        </div>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Processed Arrays (Session)</div>
+        <table class="tp-table">
+          <tr><th>Array</th><th>Shape</th><th>Content</th></tr>
+          <tr><td class="mono">X.npy</td><td class="mono">(19937, 76)</td><td>Lateral positions, all cycles</td></tr>
+          <tr><td class="mono">Y.npy</td><td class="mono">(19937, 76)</td><td>Depth positions, all cycles</td></tr>
+          <tr><td class="mono">Z.npy</td><td class="mono">(19937, 76)</td><td>Vertical positions, all cycles</td></tr>
+          <tr><td class="mono">mean_x.npy</td><td class="mono">(76,)</td><td>Mean lateral profile across all cycles</td></tr>
+          <tr><td class="mono">dwelling_norm.npy</td><td class="mono">(76,)</td><td>Normalized dwelling time = 1/|dX/dt|</td></tr>
+          <tr><td class="mono">p5x / p25x / p75x / p95x</td><td class="mono">(76,) × 4</td><td>Percentile bands of lateral spread</td></tr>
+          <tr><td class="mono">mod_ax / az / ad / adw</td><td class="mono">(16,) × 4</td><td>Module arc geometry: lateral, height, depth, dwelling-weighted depth</td></tr>
+        </table>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Module Geometry — Derived Parameters</div>
+        <table class="tp-table">
+          <tr><th>Parameter</th><th>Value</th><th>Derivation</th></tr>
+          <tr><td>Front face profile</td><td>Wag arc X-Z</td><td>mean_x × mean_z, half-cycle</td></tr>
+          <tr><td>Depth range</td><td class="mono">10–34 units</td><td>Proportional to dwelling_norm</td></tr>
+          <tr><td>Back face amplitude</td><td class="mono">45% of front</td><td>Provides mold draft angle</td></tr>
+          <tr><td>Module lean</td><td class="mono">9.69°</td><td>Dwelling centroid offset from neutral</td></tr>
+          <tr><td>Plan asymmetry (R/L)</td><td class="mono">1.240</td><td>Per-cycle median amplitude ratio</td></tr>
+          <tr><td>Scale (12-inch brick)</td><td class="mono">SCALE = 2.5</td><td>Rhino script parameter → ~300mm wide</td></tr>
+        </table>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-head">Visual Language</div>
+        <div class="tp-body"><p>All drawings generated programmatically in Python (SVG string assembly, no external libraries). Consistent palette and typography throughout.</p></div>
+        <div class="tp-tag-row" style="margin-top:14px;">
+          <div class="tp-tag accent">#f4f0e8 — Cream Background</div>
+          <div class="tp-tag accent">#1c1a14 — Ink</div>
+          <div class="tp-tag">Courier New — All Typography</div>
+          <div class="tp-tag">Dwelling-Weighted Stroke</div>
+          <div class="tp-tag">Painter's Algorithm Z-sort</div>
+          <div class="tp-tag">AZ=215° EL=24° — Axon Projection</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02–13: iframe panels -->
+    <div class="panel" id="panel-02" data-src="barkitecture_sketches.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-03" data-src="wag_chronophotograph.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-03b" data-src="wag_trace_3d_revised.svg">
+      <iframe class="lazy-frame" style="background:#f4f0e8;"></iframe>
+    </div>
+
+    <div class="panel" id="panel-04" data-src="module_type_studies.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-06" data-src="module_axon.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-07" data-src="module_assembly.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-08" data-src="tessellation_options.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-09" data-src="truchet_studies.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-10" data-src="truchet_studies_ii.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-11" data-src="study_ef_3d.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-12" data-src="truchet_studies_iii.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+    <div class="panel" id="panel-13" data-src="truchet_studies_iv.html">
+      <iframe class="lazy-frame"></iframe>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /body -->
+
+<script>
+  const loaded = new Set();
+
+  function show(id) {
+    // Deactivate all
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+    // Activate target panel
+    const panel = document.getElementById('panel-' + id);
+    if (!panel) return;
+    panel.classList.add('active');
+
+    // Lazy-load iframe src on first visit
+    if (!loaded.has(id)) {
+      const iframe = panel.querySelector('.lazy-frame');
+      if (iframe && panel.dataset.src) {
+        iframe.src = panel.dataset.src;
+      }
+      loaded.add(id);
+    }
+
+    // Activate nav button
+    const btn = document.querySelector('[data-id="' + id + '"]');
+    if (btn) btn.classList.add('active');
+  }
+
+  // Init on first load
+  show('00');
+</script>
+
+</body>
+</html>
